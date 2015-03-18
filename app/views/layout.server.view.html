@@ -43,8 +43,9 @@
 	<![endif]-->
 </head>
 
-<body class="ng-cloak">
+<body class="ng-cloak sidebar-default">
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+
 	<section class="content">
 		<section class="container-fluid">
 			{% block content %}{% endblock %}
@@ -54,6 +55,8 @@
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
+		var categories = {{ JSON.stringify(categories) }};
+		var dashboards = {{ JSON.stringify(dashboards) }};
 	</script>
 
 	<!--Application JavaScript Files-->

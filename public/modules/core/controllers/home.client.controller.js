@@ -1,30 +1,11 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$window', '$state', '$stateParams', '$http', 'Diagrammservice',
-	function($scope, Authentication, $window, $state, $stateParams, $http, Diagrammservice) {
-		// This provides Authentication context.
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$window', '$state', '$stateParams', '$http', 'Diagrammservice', 'Backdata',
+	function($scope, Authentication, $window, $state, $stateParams, $http, Diagrammservice, Backdata) {
 		$scope.authentication = Authentication;
+		$scope.backdata = Backdata; // в том числе там дерево категорий и диаграмм
 
-		//получить дерево категорий
-		var categories = {
-			items: {
-				'1': {name: 'Россия', parent: null},
-				'2': {name: 'Хабаровский край', parent: '1'}
-			}
-		};
-
-		//получить дашборды для категории
-		var dashboards = {
-			items: {
-				'1': {name: 'Диаграммы', category: '2', visible: true},
-				'2': {name: 'Уровень безработицы', category: '2', visible: false},
-				'3': {name: 'Что-то еще', category: '2', visible: false},
-				'4': {name: 'Что-то еще', category: '2', visible: false},
-				'5': {name: 'Что-то еще', category: '2', visible: false}
-			}
-		};
-
-		var dashboard = dashboards.items['1'];
+		var dashboard = $scope.backdata.dashboards.items['1'];
 
 		//получить диаграммы дашборда
 		if ($stateParams.dashboardOptions == null) {

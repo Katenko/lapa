@@ -1,0 +1,9 @@
+{
+  "items": {
+    "1": {"name": "Диаграммы", "category": "2", "visible": true},
+    "2": {"name": "Уровень безработицы", "category": "2", "visible": false},
+    "3": {"name": "Что-то еще", "category": "2", "visible": false},
+    "4": {"name": "Что-то еще", "category": "2", "visible": false},
+    "5": {"name": "Что-то еще", "category": "2", "visible": false}
+  }
+}
