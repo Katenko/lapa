@@ -10,9 +10,9 @@ App.controller('ChartController', ['$scope', '$state', 'DiagramService', functio
             }
 
             promiseGetDiagramData.then(function (data) {
-                $scope.charts.items[chart_id]=_.extend($scope.charts.items[chart_id], data.data[chart_id]);
+                var chart = _.find($scope.charts.items, {'id': chart_id});
+                chart = _.extend(chart, _.find(data.items, {'id': chart_id}));
 
-                var chart = $scope.charts.items[chart_id];
                 $scope.chartConfig = {
                     options: {
                         chart: {
