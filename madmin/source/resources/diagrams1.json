@@ -6,7 +6,7 @@
       "name": "Численность безработных граждан",
       "title": "Численность безработных граждан",
       "type": "column",
-      "zoom": "x",
+      "zoom": "",
       "stock": false,
       "dataLabels": true,
       "childDashboard": 2,

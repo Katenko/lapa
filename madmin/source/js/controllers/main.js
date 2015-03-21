@@ -170,6 +170,9 @@ function loadDashboard($scope, $stateParams, charts) {
                 name: charts.items[chart_index].name,
                 templateUrl: 'templates/parts/chart.html',
                 title: charts.items[chart_index].title,
+                size: {
+                    width: '50%' //todo настраиваемое
+                },
                 attrs: {
                     chart_id: charts.items[chart_index].id
                 }
