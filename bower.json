@@ -1,18 +1,35 @@
 {
-	"name": "lapa",
-	"version": "0.0.1",
-	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
-	"dependencies": {
-		"bootstrap": "~3",
-		"angular": "~1.2",
-		"angular-resource": "~1.2",
-		"angular-mocks": "~1.2",
-		"angular-cookies": "~1.2",
-		"angular-animate": "~1.2",
-		"angular-touch": "~1.2",
-		"angular-sanitize": "~1.2",
-		"angular-bootstrap": "~0.11.2",
-		"angular-ui-utils": "~0.1.1",
-		"angular-ui-router": "~0.2.11"
-	}
+  "name": "lapa",
+  "version": "1.0",
+  "dependencies": {
+    "angular": "~1.2.0",
+    "jquery": "~2.0.3",
+    "angular-route": "~1.2.0",
+    "malhar-angular-dashboard": "~1.0.1",
+    "jquery-ui": "~1.11.4",
+    "bootstrap": "~3.3.4",
+    "angular-ui-sortable": "~0.13.3",
+    "angular-bootstrap": "~0.12.1",
+    "highcharts": "~4.1.4",
+    "highcharts-ng": "~0.0.8",
+    "lodash": "~3.5.0"
+  },
+  "homepage": "https://github.com/Katenko/lapa",
+  "authors": [
+    "katenko <passw0rd>"
+  ],
+  "description": "lapa",
+  "keywords": [
+    "lapa"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "madmin/bower_components",
+    "madmin/source/bower_components",
+    "test",
+    "tests"
+  ]
 }

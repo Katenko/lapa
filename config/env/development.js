@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://192.168.23.99/lapa-dev',
+	db: 'mongodb://212.19.21.94/lapa-dev',
 	app: {
 		title: 'lapa - Development Environment'
 	},

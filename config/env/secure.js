@@ -2,12 +2,12 @@
 
 module.exports = {
 	port: 443,
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/lapa',
+	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://192.168.23.99/lapa',
 	assets: {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',

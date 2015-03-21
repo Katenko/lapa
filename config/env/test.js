@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/lapa-test',
-	port: 3001,
+	db: 'mongodb://192.168.23.99/lapa-test',
 	app: {
 		title: 'lapa - Test Environment'
 	},
