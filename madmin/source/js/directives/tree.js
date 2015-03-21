@@ -9,14 +9,14 @@ App.directive('tree', function(){
                         var html = [];
                         html.push("<li><a href=\"javascript:void(0);\"><i class=\"fa fa-sitemap fa-fw\"><div class=\"icon-bg bg-dark\"></div></i><span class=\"menu-title\">Категории</span></a>");
                         var previousLevel = 0;
-                        var previousDashboards = [];
+                        //var previousDashboards = [];
                         _.forEach(tree, function(category) {
                             //отобразим категорию, потом дочерние категории, потом дочерние дашборды, потом параллельные категории
                             if (category.level>previousLevel) {
                                 html[html.length-1] = html[html.length-1].replace('</span></a>', '</span><span class="fa arrow"></span></a>');
 
                                 //отображаем дашборды предыдущего левела
-                                addDashboards(previousDashboards, previousLevel, html);
+                                //addDashboards(previousDashboards, previousLevel, html);
 
                                 //создадим новый левел
                                 html.push("<ul class=\"nav "+getUlClass(category.level)+"\">");
@@ -29,15 +29,18 @@ App.directive('tree', function(){
                             }
 
                             html.push("<li><a href=\"javascript:void(0);\"><i class=\"fa "+getLiClass(category.level)+"\"></i><span class=\"submenu-title\">"+category.name+"</span></a>");
+                            addDashboards(category.dashboards, category.level, html);
                             if (category.hasChilds === 0) {
                                 html.push("</li>");
                             }
 
-                            previousDashboards = _.clone(category.dashboards);
+                            //addDashboards(category.dashboards, category.level, html);
+
+                            //previousDashboards = _.clone(category.dashboards);
                             previousLevel = category.level;
                         });
 
-                        addDashboards(previousDashboards, previousLevel, html);
+                        //addDashboards(previousDashboards, previousLevel, html);
                         html.push("</li>");
 
                         element.replaceWith(html.join(''));

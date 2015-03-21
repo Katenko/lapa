@@ -1,9 +1,12 @@
 App.factory('BackdataFactory', ['$http', '$q',
 	function($http, $q) {
-        var backdata = {};
+        var backdata = {resolved: false};
         return {
             loadBackdata: function() {
                 var deferred = $q.defer();
+                if (backdata.resolved) {
+                    deferred.resolve(backdata);
+                }
                 var deferredCategories = $q.defer();
                 var deferredDashboards = $q.defer();
                 $http.get('/getCategories').then(function(data) {
@@ -16,6 +19,7 @@ App.factory('BackdataFactory', ['$http', '$q',
                 });
 
                 function getResult(values) {
+                    backdata.resolved = true;
                     deferred.resolve(backdata);
                 }
                 $q.all([deferredCategories.promise, deferredDashboards.promise]).then(getResult);

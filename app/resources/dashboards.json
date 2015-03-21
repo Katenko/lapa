@@ -3,13 +3,13 @@
     {
       "id": "1",
       "name": "Диаграммы",
-      "category": "2",
+      "category": "6",
       "visible": true
     },
     {
       "id": "2",
       "name": "Уровень безработицы",
-      "category": "2",
+      "category": "6",
       "visible": false
     },
     {

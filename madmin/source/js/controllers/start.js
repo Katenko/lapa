@@ -1,3 +1,3 @@
-App.controller('StartController', ['$scope', '$rootScope', 'backdata', function ($scope, $rootScope, backdata){
-    $rootScope.backdata = backdata;
+App.controller('StartController', ['$scope', '$rootScope', function ($scope, $rootScope){
+
 }]);

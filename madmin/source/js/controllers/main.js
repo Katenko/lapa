@@ -3,9 +3,9 @@ App.controller('MainController', ['$scope', '$state', '$stateParams', 'DiagramSe
         $.fn.Data.checkbox();
 
         //BEGIN CALENDAR
-        $("#my-calendar").zabuto_calendar({
-            language: "en"
-        });
+        //$("#my-calendar").zabuto_calendar({
+        //    language: "en"
+        //});
         //END CALENDAR
 
         //BEGIN TO-DO-LIST

@@ -36,10 +36,7 @@ App.config(function ($stateProvider, $urlRouterProvider) {
                             'vendors/flot-chart/jquery.flot.stack.js',
                             'vendors/flot-chart/jquery.flot.spline.js']
                     });
-                }], backdata: function (BackdataFactory) {
-                    //получим список категорий и дашбордов
-                    return BackdataFactory.loadBackdata();
-                }
+                }]
             }
         })
         .state('main', {
@@ -48,8 +45,8 @@ App.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'MainController',
             resolve: {
                 charts: function (DiagramService, $stateParams) {
-                    //получим метаданные диаграмм для дашборда
-                    return DiagramService.getJson('diagrams.json');
+                    //получим данные диаграмм для дашборда
+                    return DiagramService.getJson('diagrams' + $stateParams.dashboardId + '.json');
                 }
             },
             params: {

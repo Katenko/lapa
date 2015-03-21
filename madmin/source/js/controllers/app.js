@@ -1,4 +1,4 @@
-App.controller('AppController', ['$scope', '$rootScope', '$routeParams', '$location', function ($scope, $rootScope, $routeParams, $location){
+App.controller('AppController', ['$scope', '$rootScope', '$routeParams', '$location', 'BackdataFactory', function ($scope, $rootScope, $routeParams, $location, BackdataFactory){
     $rootScope.style = 'style1';
     $rootScope.theme = 'pink-blue';
     $scope.data = {};
@@ -147,6 +147,9 @@ App.controller('AppController', ['$scope', '$rootScope', '$routeParams', '$locat
         $('.news-ticker').remove();
     });
 
+    BackdataFactory.loadBackdata().then(function(backdata) {
+        $scope.backdata = backdata;
+    });
     $scope.$watch('backdata', function(newValue, oldValue) {
         if (newValue) {
             //$scope.backdata = backdata; // в том числе там дерево категорий и диаграмм
