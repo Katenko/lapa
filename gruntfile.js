@@ -370,10 +370,9 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        flatten: true,
-                        dest: 'madmin/app/templates/',
-                        src: ['madmin/source/html/templates/**'],
-                        filter: 'isFile'
+                        dest: 'madmin/app/templates',
+                        cwd: 'madmin/source/html/templates',
+                        src: '**/*'
                     },
                     {
                         dest: 'madmin/app/index.html',

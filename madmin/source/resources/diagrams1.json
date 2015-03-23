@@ -1,18 +1,19 @@
 {
   "items": [
     {
-      "id": "1",
-      "dashboard": "1",
-      "name": "Численность безработных граждан",
-      "title": "Численность безработных граждан",
+      "id": 1,
+      "dashboard": 1,
+      "name": "Уволенные с предприятий края",
+      "title": "Уволенные с предприятий края",
       "type": "column",
       "zoom": "",
       "stock": false,
       "dataLabels": true,
       "childDashboard": 2,
+      "width": 50,
       "x": [
         {
-          "name": "Численность безработных граждан",
+          "name": "Численность",
           "data": [
             {
               "name": "Признано безработными",
@@ -22,13 +23,170 @@
             {
               "name": "из них  уволенные с предприятий края",
               "data": 96,
-              "drilldown": true
+              "drilldown": true,
+              "subx": [
+                {
+                  "name": "Численность",
+                  "data": [
+                    {
+                      "name": "уволенные по собственному желанию",
+                      "data": 40,
+                      "drilldown": false
+                    },
+                    {
+                      "name": "уволенные в связи с высвобождением",
+                      "data": 40,
+                      "drilldown": false
+                    },
+                    {
+                      "name": "уволенные по другим причинам",
+                      "data": 16,
+                      "drilldown": false
+                    }
+                  ]
+                }
+              ],
+              "suby": {
+                "name": "Количество",
+                "enabled": true
+              }
             }
           ]
         }
       ],
       "y": {
         "name": "Количество",
+        "enabled": true
+      }
+    },
+    {
+      "id": 2,
+      "dashboard": 1,
+      "name": "Снятые с учета за период",
+      "title": "Снятые с учета за период",
+      "type": "column",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": true,
+      "childDashboard": null,
+      "width": 50,
+      "x": [
+        {
+          "name": "Численность",
+          "data": [
+            {
+              "name": "Признано безработными",
+              "data": 150,
+              "drilldown": false
+            },
+            {
+              "name": "Снятых с учета за период",
+              "data": 96,
+              "drilldown": false
+            }
+          ]
+        }
+      ],
+      "y": {
+        "name": "Количество",
+        "enabled": true
+      }
+    },
+    {
+      "id": 3,
+      "dashboard": 1,
+      "name": "Динамика коэффициента напряженности",
+      "title": "Динамика коэффициента напряженности",
+      "type": "line",
+      "zoom": "x",
+      "stock": true,
+      "dataLabels": false,
+      "childDashboard": null,
+      "width": 100,
+      "x": [
+        {
+          "name": "Коэффициент напряженности",
+          "data": [
+            {
+              "name": "01.01.2015",
+              "data": 0.90,
+              "drilldown": false
+            },
+            {
+              "name": "07.01.2015",
+              "data": 0.94,
+              "drilldown": false
+            },
+            {
+              "name": "13.01.2015",
+              "data": 0.56,
+              "drilldown": false
+            },
+            {
+              "name": "19.01.2015",
+              "data": 0.88,
+              "drilldown": false
+            },
+            {
+              "name": "25.01.2015",
+              "data": 0.2,
+              "drilldown": false
+            },
+            {
+              "name": "31.01.2015",
+              "data": 0.41,
+              "drilldown": false
+            },
+            {
+              "name": "06.02.2015",
+              "data": 0.6,
+              "drilldown": false
+            },
+            {
+              "name": "12.02.2015",
+              "data": 0.82,
+              "drilldown": false
+            },
+            {
+              "name": "18.02.2015",
+              "data": 0.79,
+              "drilldown": false
+            },
+            {
+              "name": "24.02.2015",
+              "data": 0.15,
+              "drilldown": false
+            },
+            {
+              "name": "02.03.2015",
+              "data": 0.88,
+              "drilldown": false
+            },
+            {
+              "name": "08.03.2015",
+              "data": 0.48,
+              "drilldown": false
+            },
+            {
+              "name": "14.03.2015",
+              "data": 0.95,
+              "drilldown": false
+            },
+            {
+              "name": "20.03.2015",
+              "data": 0.57,
+              "drilldown": false
+            },
+            {
+              "name": "26.03.2015",
+              "data": 0.15,
+              "drilldown": false
+            }
+          ]
+        }
+      ],
+      "y": {
+        "name": "Значение",
         "enabled": true
       }
     }

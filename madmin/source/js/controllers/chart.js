@@ -1,8 +1,18 @@
-App.controller('ChartController', ['$scope', '$state', 'DiagramService', function ($scope, $state, DiagramService) {
+App.controller('ChartController', ['$scope', '$state', '$stateParams', '$location', function ($scope, $state, $stateParams, $location) {
     var chart_id = $scope.widget.attrs.chart_id;
 
     var chart = _.find($scope.charts.items, {'id': chart_id});
     //chart = _.extend(chart, _.find(data.items, {'id': chart_id}));
+
+    //установим исходные данные для проваливаемых диаграмм
+    if ($stateParams.options) {
+        var options = JSON.parse($stateParams.options);
+        var series = _.find(chart.x, {"name": options.series});
+        var x = _.find(series.data, {"name": options.x});
+        if (x) chart.x = x.subx;
+    } else if (!($scope.dashboard.visible)) {
+        $state.go("index");
+    }
 
     $scope.chartConfig = {
         options: {
@@ -57,10 +67,10 @@ App.controller('ChartController', ['$scope', '$state', 'DiagramService', functio
                     var options = {
                         series: this.series.name,
                         x: chart.type == 'pie' ? this.name : this.category,
-                        dashboard: chart.childDashboard,
+                        current: chart.childDashboard,
                         parent: chart.dashboard
                     };
-                    $state.go("main", {"dashboardId": options.dashboard}, options);
+                    $state.go("main", {"dashboardId": chart.childDashboard, "options": JSON.stringify(options)});
                 };
             }
             $scope.chartConfig.series[i].data.push(point);
@@ -69,7 +79,7 @@ App.controller('ChartController', ['$scope', '$state', 'DiagramService', functio
     }
 
     $scope.$on('widgetResized', function (event, size) {
-        var parentWidth = $('#' + $scope.dashboard_container_id).offsetParent().width();
+        var parentWidth = $('#dashboard_' + $scope.dashboard.id).offsetParent().width();
         var width = parentWidth * size.width / 100 - 75;
         if (size.height) $scope.chartConfig.options.chart.height = size.height - 25;
         $scope.chartConfig.options.chart.width = width || $scope.chartConfig.options.chart.width;

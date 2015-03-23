@@ -12,3 +12,9 @@ function guid() {
 String.prototype.repeat = function (num) {
     return new Array(num + 1).join(this);
 };
+
+function getUriParamsPathFromObject(obj) {
+    return Object.keys(obj).map(function(key){
+        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
+}

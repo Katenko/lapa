@@ -156,7 +156,7 @@ function loadDashboard($scope, $stateParams, charts) {
     var defaultWidgets = [];
     var widgetDefinitions = [];
 
-    var dashboard_id = $stateParams.dashboardId;
+    var dashboard_id = parseInt($stateParams.dashboardId);
 
     for (var chart_index in charts.items) {
         defaultWidgets.push(
@@ -171,7 +171,7 @@ function loadDashboard($scope, $stateParams, charts) {
                 templateUrl: 'templates/parts/chart.html',
                 title: charts.items[chart_index].title,
                 size: {
-                    width: '50%' //todo настраиваемое
+                    width: charts.items[chart_index].width+'%'
                 },
                 attrs: {
                     chart_id: charts.items[chart_index].id
@@ -194,6 +194,6 @@ function loadDashboard($scope, $stateParams, charts) {
     };
 
     //инициализация
+    $scope.dashboard = _.find($scope.backdata.dashboards.items, {"id": dashboard_id});
     $scope.charts = charts;
-    $scope.dashboard_container_id = 'dashboard_container_' + dashboard_id;
 }

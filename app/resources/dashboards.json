@@ -1,34 +1,28 @@
 {
   "items": [
     {
-      "id": "1",
-      "name": "Диаграммы",
-      "category": "6",
+      "id": 1,
+      "name": "Уровень безработицы",
+      "category": 4,
       "visible": true
     },
     {
-      "id": "2",
-      "name": "Уровень безработицы",
-      "category": "6",
+      "id": 2,
+      "name": "Детализация уровня безработицы",
+      "category": 4,
       "visible": false
     },
     {
-      "id": "3",
-      "name": "Что-то еще",
-      "category": "2",
-      "visible": false
+      "id": 3,
+      "name": "Заявленные акции",
+      "category": 3,
+      "visible": true
     },
     {
-      "id": "4",
-      "name": "Что-то еще",
-      "category": "2",
-      "visible": false
-    },
-    {
-      "id": "5",
-      "name": "Что-то еще",
-      "category": "2",
-      "visible": false
+      "id": 4,
+      "name": "Ситуация в рыбном хозяйстве",
+      "category": 2,
+      "visible": true
     }
   ]
 }

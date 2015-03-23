@@ -40,7 +40,7 @@ App.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('main', {
-            url: "/main/:dashboardId",
+            url: "/main/:dashboardId?options",
             templateUrl: 'templates/states/main.html',
             controller: 'MainController',
             resolve: {
@@ -50,13 +50,9 @@ App.config(function ($stateProvider, $urlRouterProvider) {
                 }
             },
             params: {
-                series: {},
-                x: {},
-                dashboard: null,
-                parent: null,
-                dashboardOptions: null,
                 charts: null,
-                dashboardId: null
+                dashboardId: null,
+                options: null
             }
         })
         .state('layout-left-sidebar', {

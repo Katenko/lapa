@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "id": 4,
+      "dashboard": 2,
+      "name": "Детализация по уволенным с предприятий края",
+      "title": "Детализация по уволенным с предприятий края",
+      "type": "pie",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": true,
+      "childDashboard": null,
+      "width": 50,
+      "x": [
+        {
+          "name": "Численность",
+          "data": [
+            {
+              "name": "Признано безработными",
+              "data": 150,
+              "drilldown": false
+            },
+            {
+              "name": "из них  уволенные с предприятий края",
+              "data": 96,
+              "drilldown": true,
+              "subx": [
+                {
+                  "name": "Численность",
+                  "data": [
+                    {
+                      "name": "уволенные по собственному желанию",
+                      "data": 40,
+                      "drilldown": false
+                    },
+                    {
+                      "name": "уволенные в связи с высвобождением",
+                      "data": 40,
+                      "drilldown": false
+                    },
+                    {
+                      "name": "уволенные по другим причинам",
+                      "data": 16,
+                      "drilldown": false
+                    }
+                  ]
+                }
+              ],
+              "suby": {
+                "name": "Количество",
+                "enabled": true
+              }
+            }
+          ]
+        }
+      ],
+      "y": {
+        "name": "Количество",
+        "enabled": true
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 
     $.fn.Data.pages = {
         '/': {title:'Главная страница', 'breadcrumb':['Главная страница']},
-        '/main/:dashboardId': {title:'Панель диаграмм', 'breadcrumb':['Панель диаграмм']},
+        '/main/:dashboardId?options': {title:'Панель диаграмм', 'breadcrumb':['Панель диаграмм']},
         '/layout-left-sidebar': {title:'Left Sidebar', 'breadcrumb':['Layouts', 'Left Sidebar']},
         '/layout-left-sidebar-collapsed': {title:'Left Sidebar Collapsed', 'breadcrumb':['Layouts', 'Left Sidebar Collapsed']},
         '/layout-right-sidebar': {title:'Right Sidebar', 'breadcrumb':['Layouts', 'Right Sidebar']},

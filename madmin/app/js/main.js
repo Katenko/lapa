@@ -41,7 +41,7 @@ App.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('main', {
-            url: "/main/:dashboardId",
+            url: "/main/:dashboardId?options",
             templateUrl: 'templates/states/main.html',
             controller: 'MainController',
             resolve: {
@@ -51,13 +51,9 @@ App.config(function ($stateProvider, $urlRouterProvider) {
                 }
             },
             params: {
-                series: {},
-                x: {},
-                dashboard: null,
-                parent: null,
-                dashboardOptions: null,
                 charts: null,
-                dashboardId: null
+                dashboardId: null,
+                options: null
             }
         })
         .state('layout-left-sidebar', {
@@ -1221,11 +1217,21 @@ function buildCategoriesTree(list, categories, current, level) {
 }
 
 
-App.controller('ChartController', ['$scope', '$state', 'DiagramService', function ($scope, $state, DiagramService) {
+App.controller('ChartController', ['$scope', '$state', '$stateParams', '$location', function ($scope, $state, $stateParams, $location) {
     var chart_id = $scope.widget.attrs.chart_id;
 
     var chart = _.find($scope.charts.items, {'id': chart_id});
     //chart = _.extend(chart, _.find(data.items, {'id': chart_id}));
+
+    //установим исходные данные для проваливаемых диаграмм
+    if ($stateParams.options) {
+        var options = JSON.parse($stateParams.options);
+        var series = _.find(chart.x, {"name": options.series});
+        var x = _.find(series.data, {"name": options.x});
+        if (x) chart.x = x.subx;
+    } else if (!($scope.dashboard.visible)) {
+        $state.go("index");
+    }
 
     $scope.chartConfig = {
         options: {
@@ -1280,10 +1286,10 @@ App.controller('ChartController', ['$scope', '$state', 'DiagramService', functio
                     var options = {
                         series: this.series.name,
                         x: chart.type == 'pie' ? this.name : this.category,
-                        dashboard: chart.childDashboard,
+                        current: chart.childDashboard,
                         parent: chart.dashboard
                     };
-                    $state.go("main", {"dashboardId": options.dashboard}, options);
+                    $state.go("main", {"dashboardId": chart.childDashboard, "options": JSON.stringify(options)});
                 };
             }
             $scope.chartConfig.series[i].data.push(point);
@@ -1292,7 +1298,7 @@ App.controller('ChartController', ['$scope', '$state', 'DiagramService', functio
     }
 
     $scope.$on('widgetResized', function (event, size) {
-        var parentWidth = $('#' + $scope.dashboard_container_id).offsetParent().width();
+        var parentWidth = $('#dashboard_' + $scope.dashboard.id).offsetParent().width();
         var width = parentWidth * size.width / 100 - 75;
         if (size.height) $scope.chartConfig.options.chart.height = size.height - 25;
         $scope.chartConfig.options.chart.width = width || $scope.chartConfig.options.chart.width;
@@ -6524,7 +6530,7 @@ App.controller('ChartsHighchartScatterBubbleController', function ($scope, $rout
 
     $.fn.Data.pages = {
         '/': {title:'Главная страница', 'breadcrumb':['Главная страница']},
-        '/main/:dashboardId': {title:'Панель диаграмм', 'breadcrumb':['Панель диаграмм']},
+        '/main/:dashboardId?options': {title:'Панель диаграмм', 'breadcrumb':['Панель диаграмм']},
         '/layout-left-sidebar': {title:'Left Sidebar', 'breadcrumb':['Layouts', 'Left Sidebar']},
         '/layout-left-sidebar-collapsed': {title:'Left Sidebar Collapsed', 'breadcrumb':['Layouts', 'Left Sidebar Collapsed']},
         '/layout-right-sidebar': {title:'Right Sidebar', 'breadcrumb':['Layouts', 'Right Sidebar']},
@@ -7988,7 +7994,7 @@ function loadDashboard($scope, $stateParams, charts) {
     var defaultWidgets = [];
     var widgetDefinitions = [];
 
-    var dashboard_id = $stateParams.dashboardId;
+    var dashboard_id = parseInt($stateParams.dashboardId);
 
     for (var chart_index in charts.items) {
         defaultWidgets.push(
@@ -8003,7 +8009,7 @@ function loadDashboard($scope, $stateParams, charts) {
                 templateUrl: 'templates/parts/chart.html',
                 title: charts.items[chart_index].title,
                 size: {
-                    width: '50%'
+                    width: charts.items[chart_index].width+'%'
                 },
                 attrs: {
                     chart_id: charts.items[chart_index].id
@@ -8026,8 +8032,8 @@ function loadDashboard($scope, $stateParams, charts) {
     };
 
     //инициализация
+    $scope.dashboard = _.find($scope.backdata.dashboards.items, {"id": dashboard_id});
     $scope.charts = charts;
-    $scope.dashboard_container_id = 'dashboard_container_' + dashboard_id;
 }
 
 App.controller('NoneController', function ($scope, $routeParams){
@@ -9844,6 +9850,40 @@ App.directive("ngZabutocalendar", function($parse, $compile){
         }
     };
 });
+App.directive('resize', ['$window', '$state', '$stateParams', '$timeout', function ($window, $state, $stateParams, $timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope) {
+            var w = angular.element($window);
+            scope.getWindowDimensions = function () {
+                return {
+                    'h': w.height(),
+                    'w': w.width()
+                };
+            };
+
+            w.bind('resize', function () {
+                waitForFinalEvent(function(){
+                    $state.go($state.current, $stateParams, {reload: true});
+                }, 500, "unique");
+            });
+        }
+    };
+}]);
+
+var waitForFinalEvent = (function () {
+    var timers = {};
+    return function (callback, ms, uniqueId) {
+        if (!uniqueId) {
+            uniqueId = "Don't call this twice without a uniqueId";
+        }
+        if (timers[uniqueId]) {
+            clearTimeout (timers[uniqueId]);
+        }
+        timers[uniqueId] = setTimeout(callback, ms);
+    };
+})();
+
 App.directive("scrollSpy", function($window){
     return {
         restrict: 'A',
@@ -9942,37 +9982,42 @@ App.directive('tree', function(){
                 scope.$watch('tree', function(tree, old) {
                     if (tree) {
                         var html = [];
-                        html.push("<li><a href=\"javascript:void(0);\"><i class=\"fa fa-sitemap fa-fw\"><div class=\"icon-bg bg-dark\"></div></i><span class=\"menu-title\">Категории</span></a>");
-                        var previousLevel = 0;
+
+                        var parentCategory = _.find(tree, {parent: null});
+                        html.push("<li><a href=\"javascript:void(0);\"><i class=\"fa fa-sitemap fa-fw\"><div class=\"icon-bg bg-dark\"></div></i><span class=\"menu-title\">"+parentCategory.name+"</span></a>");
+
+                        var previousLevel = parentCategory.level;
                         //var previousDashboards = [];
                         _.forEach(tree, function(category) {
-                            //отобразим категорию, потом дочерние категории, потом дочерние дашборды, потом параллельные категории
-                            if (category.level>previousLevel) {
-                                html[html.length-1] = html[html.length-1].replace('</span></a>', '</span><span class="fa arrow"></span></a>');
+                            if (category.parent != null) {
+                                //отобразим категорию, потом дочерние категории, потом дочерние дашборды, потом параллельные категории
+                                if (category.level > previousLevel) {
+                                    html[html.length - 1] = html[html.length - 1].replace('</span></a>', '</span><span class="fa arrow"></span></a>');
 
-                                //отображаем дашборды предыдущего левела
-                                //addDashboards(previousDashboards, previousLevel, html);
+                                    //отображаем дашборды предыдущего левела
+                                    //addDashboards(previousDashboards, previousLevel, html);
 
-                                //создадим новый левел
-                                html.push("<ul class=\"nav "+getUlClass(category.level)+"\">");
-                            } else if (category.level<previousLevel) {
-                                //закроем левел
-                                var endLevelString = "</ul></li>".repeat(previousLevel-category.level);
-                                html.push(endLevelString);
-                            } else {
-                                //ничего не делаем...
+                                    //создадим новый левел
+                                    html.push("<ul class=\"nav " + getUlClass(category.level) + "\">");
+                                } else if (category.level < previousLevel) {
+                                    //закроем левел
+                                    var endLevelString = "</ul></li>".repeat(previousLevel - category.level);
+                                    html.push(endLevelString);
+                                } else {
+                                    //ничего не делаем...
+                                }
+
+                                html.push("<li><a href=\"javascript:void(0);\"><i class=\"fa " + getLiClass(category.level) + "\"></i><span class=\"submenu-title\">" + category.name + "</span></a>");
+                                addDashboards(category.dashboards, category.level, html);
+                                if (category.hasChilds === 0) {
+                                    html.push("</li>");
+                                }
+
+                                //addDashboards(category.dashboards, category.level, html);
+
+                                //previousDashboards = _.clone(category.dashboards);
+                                previousLevel = category.level;
                             }
-
-                            html.push("<li><a href=\"javascript:void(0);\"><i class=\"fa "+getLiClass(category.level)+"\"></i><span class=\"submenu-title\">"+category.name+"</span></a>");
-                            addDashboards(category.dashboards, category.level, html);
-                            if (category.hasChilds === 0) {
-                                html.push("</li>");
-                            }
-
-                            //addDashboards(category.dashboards, category.level, html);
-
-                            //previousDashboards = _.clone(category.dashboards);
-                            previousLevel = category.level;
                         });
 
                         //addDashboards(previousDashboards, previousLevel, html);
@@ -9990,20 +10035,21 @@ App.directive('tree', function(){
 
 function addDashboards(previousDashboards, previousLevel, html) {
     if (previousDashboards.length > 0) {
+        html[html.length - 1] = html[html.length - 1].replace('</span></a>', '</span><span class="fa arrow"></span></a>');
         html.push("<ul class=\"nav " + getUlClass(previousLevel) + "\">");
         _.forEach(previousDashboards, function (dashboard) {
-            html.push("<li><a style=\"padding-left:50px\" ui-sref=\"main({dashboardId:"+dashboard.id+"})\"><i class=\"fa fa-bar-chart-o\"></i><span class=\"dashboard-item submenu-title\">" + dashboard.name + "</span></a></li>");
+            html.push("<li><a style=\"padding-left:50px\" ui-sref=\"main({dashboardId:"+dashboard.id+", options: null})\"><i class=\"fa fa-bar-chart-o\"></i><span class=\"dashboard-item submenu-title\">" + dashboard.name + "</span></a></li>");
         });
         html.push("</ul>");
     }
 }
 
 function getUlClass(level) {
-    return (level==1?"nav-second-level":level==2?"nav-third-level":level==3?"nav-fourth-level":level==4?"nav-fifth-level":"");
+    return (level==2?"nav-second-level":level==3?"nav-third-level":level==4?"nav-fourth-level":level==5?"nav-fifth-level":"");
 }
 
 function getLiClass(level) {
-    return (level==1?"fa-angle-right":level==2?"fa-angle-double-right":level==3?"fa-angle-triple-right":level==4?"fa-angle-four-right":"");
+    return (level==2?"fa-angle-right":level==3?"fa-angle-double-right":level==4?"fa-angle-triple-right":level==5?"fa-angle-four-right":"");
 }
 
 App.factory('BackdataFactory', ['$http', '$q',
@@ -10052,6 +10098,12 @@ function guid() {
 String.prototype.repeat = function (num) {
     return new Array(num + 1).join(this);
 };
+
+function getUriParamsPathFromObject(obj) {
+    return Object.keys(obj).map(function(key){
+        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
+}
 
 App.service('DiagramService', ['$http', '$q',
 	function($http, $q) {
