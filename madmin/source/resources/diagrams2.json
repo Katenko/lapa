@@ -8,7 +8,7 @@
       "type": "pie",
       "zoom": "",
       "stock": false,
-      "dataLabels": true,
+      "dataLabels": false,
       "childDashboard": null,
       "width": 100,
       "height": 800,

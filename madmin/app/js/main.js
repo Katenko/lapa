@@ -1271,6 +1271,9 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
         $scope.chartConfig.series[i].name = chart.x[i].name;
         $scope.chartConfig.series[i].pointRange = 1;
         $scope.chartConfig.series[i].data = [];
+        if (chart.type == 'pie') {
+            $scope.chartConfig.series[i].showInLegend = true;
+        }
 
         $scope.chartConfig.xAxis = {};
         $scope.chartConfig.xAxis.categories = [];
