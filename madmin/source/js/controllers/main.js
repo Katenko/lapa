@@ -171,7 +171,8 @@ function loadDashboard($scope, $stateParams, charts) {
                 templateUrl: 'templates/parts/chart.html',
                 title: charts.items[chart_index].title,
                 size: {
-                    width: charts.items[chart_index].width+'%'
+                    width: charts.items[chart_index].width+'%',
+                    height: charts.items[chart_index].height
                 },
                 attrs: {
                     chart_id: charts.items[chart_index].id
@@ -186,7 +187,7 @@ function loadDashboard($scope, $stateParams, charts) {
         widgetDefinitions: widgetDefinitions,
         defaultWidgets: defaultWidgets,
         storage: $scope.store,
-        storageId: 'a',
+        storageId: 'lapa',
         hideWidgetSettings: true,
         stringifyStorage: true,
         hideWidgetClose: true,

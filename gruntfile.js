@@ -17,7 +17,7 @@ module.exports = function (grunt) {
             secret: grunt.file.readJSON('./secret.json'),
             pkg: grunt.file.readJSON('./package.json')
         },
-        less: {
+        less: { //билдим цсс из лэсс
             build: {
                 files: {
                     "madmin/app/css/themes/style1/blue-grey.css": "madmin/source/less/themes/style1/blue-grey.less",
@@ -281,7 +281,7 @@ module.exports = function (grunt) {
                 dest: 'madmin/app/js/main.js'
             }
         },
-        jshint: {
+        jshint: { //собираем главный js из наших скриптов ангуляра, сторонние не входят (потом выполняется конкат)
             options: {
                 strict: false,
                 eqnull: true,
@@ -304,11 +304,10 @@ module.exports = function (grunt) {
                 }
             }
         },
-        copy: {
+        copy: { //копируем скрипты сторонних библиотек, библиотек, которые мы засунули в third, так как изменяем и html-файлы + статические файлы
             main: {
                 nonull: true,
                 files: [
-                    // includes files within path
                     {
                         dest: 'madmin/app/js/libs/jquery.min.js',
                         src: 'madmin/source/bower_components/jquery/jquery.min.js'
@@ -343,7 +342,6 @@ module.exports = function (grunt) {
                         dest: 'madmin/app/js/libs/highcharts-drilldown.js',
                         src: 'madmin/source/bower_components/highcharts/modules/drilldown.js'
                     },
-
                     {dest: 'madmin/app/js/libs/lodash.js', src: 'madmin/source/bower_components/lodash/lodash.js'},
                     {
                         dest: 'madmin/app/js/libs/angular-ui-sortable.js',
@@ -352,14 +350,6 @@ module.exports = function (grunt) {
                     {
                         dest: 'madmin/app/js/libs/highcharts-ng.js',
                         src: 'madmin/source/bower_components/highcharts-ng/dist/highcharts-ng.js'
-                    },
-                    {
-                        dest: 'madmin/app/js/libs/malhar-angular-dashboard.js',
-                        src: 'madmin/source/bower_components/malhar-angular-dashboard/dist/malhar-angular-dashboard.js'
-                    },
-                    {
-                        dest: 'madmin/app/css/malhar-angular-dashboard.css',
-                        src: 'madmin/source/bower_components/malhar-angular-dashboard/dist/malhar-angular-dashboard.css'
                     },
                     {
                         expand: true,
@@ -372,6 +362,12 @@ module.exports = function (grunt) {
                         expand: true,
                         dest: 'madmin/app/templates',
                         cwd: 'madmin/source/html/templates',
+                        src: '**/*'
+                    },
+                    {
+                        expand: true,
+                        dest: 'madmin/app/third',
+                        cwd: 'madmin/source/third',
                         src: '**/*'
                     },
                     {

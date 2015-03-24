@@ -43,7 +43,6 @@
     <script src="js/libs/highcharts-ng.js"></script>
     <script src="js/libs/underscore.js"></script>
     <script src="js/libs/lodash.js"></script>
-    <script src="js/libs/malhar-angular-dashboard.js"></script>
     <!-- Loading global plugin-->
     <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
@@ -59,10 +58,13 @@
     <script src="vendors/moment/moment.js"></script>
     <script src="vendors/flot-chart/jquery.flot.js"></script>
     <script src="vendors/DataTables/media/js/jquery.dataTables.js"></script>
+
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <!-- Loading core javascript-->
+
     <script src="js/main.js"></script>
-    <!--Load script for each page using LazyLoad-->
+
+    <link rel="stylesheet" href="third/dashboard/malhar-angular-dashboard.css"/>
+    <script src="third/dashboard/malhar-angular-dashboard.js"></script>
   </head>
   <body ng-controller="AppController" ng-class="[header.menu_style, header.menu_collapse, header.header_topbar, header.effect]" class="animated">
     <div ng-class="header.boxed" class="default-page">

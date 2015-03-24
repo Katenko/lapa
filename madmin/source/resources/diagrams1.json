@@ -11,6 +11,7 @@
       "dataLabels": true,
       "childDashboard": 2,
       "width": 50,
+      "height": 500,
       "x": [
         {
           "name": "Численность",
@@ -70,18 +71,19 @@
       "dataLabels": true,
       "childDashboard": null,
       "width": 50,
+      "height": 500,
       "x": [
         {
           "name": "Численность",
           "data": [
             {
               "name": "Признано безработными",
-              "data": 150,
+              "data": 5,
               "drilldown": false
             },
             {
               "name": "Снятых с учета за период",
-              "data": 96,
+              "data": 100,
               "drilldown": false
             }
           ]
@@ -103,6 +105,7 @@
       "dataLabels": false,
       "childDashboard": null,
       "width": 100,
+      "height": 500,
       "x": [
         {
           "name": "Коэффициент напряженности",

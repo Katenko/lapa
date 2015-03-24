@@ -39,6 +39,9 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
                 text: chart.y.name
             }
         },
+        size: {
+            height: chart.height - 25
+        },
         highstocks: chart.stock,
         loading: false
     };
@@ -79,10 +82,16 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
     }
 
     $scope.$on('widgetResized', function (event, size) {
-        var parentWidth = $('#dashboard_' + $scope.dashboard.id).offsetParent().width();
-        var width = parentWidth * size.width / 100 - 75;
-        if (size.height) $scope.chartConfig.options.chart.height = size.height - 25;
-        $scope.chartConfig.options.chart.width = width || $scope.chartConfig.options.chart.width;
+        if (size.height) {
+            if (typeof size.height === "string") size.height = size.height.replace('px', '');
+            $scope.chartConfig.size.height = size.height - 25;
+        }
+        if (size.width) {
+            var parentWidth = $('#dashboard_' + $scope.dashboard.id).offsetParent().width();
+            if (typeof size.width === "string") size.width = size.width.replace('%', '');
+            var width = parentWidth * size.width / 100 - 75;
+            $scope.chartConfig.size.width = width || $scope.chartConfig.size.width;
+        }
         $scope.$apply();
     });
 }]);
