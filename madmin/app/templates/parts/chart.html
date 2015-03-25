@@ -1,5 +1,6 @@
 <div ng-controller="ChartController" resize>
   <highchart-container>
-    <highchart config="chartConfig" id="chart_{{widget.attrs.chart_id}}" class="highchart_class"></highchart>
+    <highchart config="chartConfig" id="chart_{{widget.attrs.chart_id}}" class="highchart_class" ng-hide="widget.attrs.chart_type=='table'"></highchart>
+    <hightable config="tableConfig" id="chart_{{widget.attrs.chart_id}}" ng-show="widget.attrs.chart_type=='table'"></hightable>
   </highchart-container>
 </div>

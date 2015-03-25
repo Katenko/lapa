@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-lg-12">
+        <!--<div class="panel panel-blue">-->
+            <div class="panel-body">
+                <div id="flip-scroll">
+                    <table class="table table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                        <tr>
+                            <th>{{config.series}}</th>
+                            <th ng-repeat="name in config.names">{{name}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in config.x">
+                            <td>{{x.name}}</td>
+                            <td ng-repeat="data in x.data">{{data}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+</div>

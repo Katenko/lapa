@@ -175,7 +175,8 @@ function loadDashboard($scope, $stateParams, charts) {
                     height: charts.items[chart_index].height
                 },
                 attrs: {
-                    chart_id: charts.items[chart_index].id
+                    chart_id: charts.items[chart_index].id,
+                    chart_type: charts.items[chart_index].type
                 }
             }
         );

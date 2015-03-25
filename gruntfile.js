@@ -262,11 +262,10 @@ module.exports = function (grunt) {
             //        nospawn: true
             //    }
             //},
-            gruntfile: {
-                files: 'Gruntfile.js',
-                tasks: ['default']
-            }
-            ,
+            //gruntfile: {
+            //    files: 'Gruntfile.js',
+            //    tasks: ['default']
+            //},
             javascript: {
                 files: '<%= project.javascript.ours %>',
                 tasks: ['jshint', 'ngtemplates', 'concat']
@@ -331,16 +330,12 @@ module.exports = function (grunt) {
                         src: 'madmin/source/bower_components/angular-bootstrap/ui-bootstrap.js'
                     },
                     {
-                        dest: 'madmin/app/js/libs/highcharts.js',
-                        src: 'madmin/source/bower_components/highcharts/highcharts.js'
+                        dest: 'madmin/app/js/libs/highstock.js',
+                        src: 'madmin/source/bower_components/highstock-release/highstock-all.js'
                     },
                     {
-                        dest: 'madmin/app/js/libs/highcharts-3d.js',
-                        src: 'madmin/source/bower_components/highcharts/highcharts-3d.js'
-                    },
-                    {
-                        dest: 'madmin/app/js/libs/highcharts-drilldown.js',
-                        src: 'madmin/source/bower_components/highcharts/modules/drilldown.js'
+                        dest: 'madmin/app/js/libs/highstock-drilldown.js',
+                        src: 'madmin/source/bower_components/highstock-release/modules/drilldown.js'
                     },
                     {dest: 'madmin/app/js/libs/lodash.js', src: 'madmin/source/bower_components/lodash/lodash.js'},
                     {
@@ -348,8 +343,8 @@ module.exports = function (grunt) {
                         src: 'madmin/source/bower_components/angular-ui-sortable/sortable.js'
                     },
                     {
-                        dest: 'madmin/app/js/libs/highcharts-ng.js',
-                        src: 'madmin/source/bower_components/highcharts-ng/dist/highcharts-ng.js'
+                        dest: 'madmin/app/js/libs/moment.js',
+                        src: 'madmin/source/bower_components/moment/moment.js'
                     },
                     {
                         expand: true,

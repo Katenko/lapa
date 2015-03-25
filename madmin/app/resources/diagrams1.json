@@ -19,12 +19,14 @@
             {
               "name": "Признано безработными",
               "data": 150,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
             },
             {
               "name": "из них  уволенные с предприятий края",
               "data": 96,
               "drilldown": true,
+              "tooltip": "",
               "subx": [
                 {
                   "name": "Численность",
@@ -32,17 +34,20 @@
                     {
                       "name": "уволенные по собственному желанию",
                       "data": 40,
-                      "drilldown": false
+                      "drilldown": false,
+                      "tooltip": ""
                     },
                     {
                       "name": "уволенные в связи с высвобождением",
                       "data": 40,
-                      "drilldown": false
+                      "drilldown": false,
+                      "tooltip": ""
                     },
                     {
                       "name": "уволенные по другим причинам",
                       "data": 16,
-                      "drilldown": false
+                      "drilldown": false,
+                      "tooltip": ""
                     }
                   ]
                 }
@@ -79,12 +84,14 @@
             {
               "name": "Признано безработными",
               "data": 5,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "Снятых с учета за период",
               "data": 100,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             }
           ]
         }
@@ -100,7 +107,7 @@
       "name": "Динамика коэффициента напряженности",
       "title": "Динамика коэффициента напряженности",
       "type": "line",
-      "zoom": "x",
+      "zoom": "",
       "stock": true,
       "dataLabels": false,
       "childDashboard": null,
@@ -113,77 +120,92 @@
             {
               "name": "01.01.2015",
               "data": 0.90,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "07.01.2015",
               "data": 0.94,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "13.01.2015",
               "data": 0.56,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "19.01.2015",
               "data": 0.88,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "25.01.2015",
               "data": 0.2,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "31.01.2015",
               "data": 0.41,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "06.02.2015",
               "data": 0.6,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "12.02.2015",
               "data": 0.82,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "18.02.2015",
               "data": 0.79,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "24.02.2015",
               "data": 0.15,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "02.03.2015",
               "data": 0.88,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "08.03.2015",
               "data": 0.48,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "14.03.2015",
               "data": 0.95,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "20.03.2015",
               "data": 0.57,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             },
             {
               "name": "26.03.2015",
               "data": 0.15,
-              "drilldown": false
+              "drilldown": false,
+              "tooltip": ""
             }
           ]
         }

@@ -27,7 +27,7 @@
     </div>
 
     <div ui-sortable="sortableOptions" ng-model="widgets" class="dashboard-widget-area">
-        <div ng-repeat="widget in widgets" ng-style="widget.containerStyle" class="widget-container" widget>
+        <div ng-repeat="widget in widgets" ng-style="widget.containerStyle" class="widget-container" ng-class="{'widget-container-no-bottom': maximizedOther}" widget>
             <div class="widget panel panel-default" ng-hide="!maximizedThis&&maximizedOther">
                 <div class="widget-header panel-heading">
                     <h3 class="panel-title">
@@ -43,7 +43,7 @@
                         <span ng-show="maximizedThis" title=\"maximize\" ng-click="maxResizer($event)" class="glyphicon glyphicon-resize-small"></span>
                     </h3>
                 </div>
-                <div class="panel-body widget-content" ng-style="widget.contentStyle"></div>
+                <div class="panel-body widget-content" ng-class="{'widget-content-table': widget.attrs.chart_type=='table'}" ng-style="widget.contentStyle"></div>
                 <div class="widget-ew-resizer" ng-mousedown="grabResizer($event)"></div>
                 <div ng-if="widget.enableVerticalResize" class="widget-s-resizer" ng-mousedown="grabSouthResizer($event)"></div>
             </div>

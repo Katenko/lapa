@@ -26,7 +26,6 @@
     <link rel="stylesheet" data-ng-href="css/themes/style1/pink-blue.css"/>
     <link rel="stylesheet" data-ng-href="css/themes/{{style}}/{{theme}}.css"/>
     <link rel="stylesheet" href="css/style-responsive.css"/>
-    <link rel="stylesheet" href="css/malhar-angular-dashboard.css"/>
     <!-- Loading library javascript-->
     <script src="vendors/jquery-1.10.2.min.js"></script>
     <script src="js/libs/angular.js"></script>
@@ -37,9 +36,13 @@
     <script src="js/libs/ui-bootstrap.js"></script>
     <script src="vendors/jquery-migrate-1.2.1.min.js"></script>
     <script src="vendors/jquery-ui.js"></script>
-    <script src="js/libs/highcharts.js"></script>
-    <script src="js/libs/highcharts-3d.js"></script>
-    <script src="js/libs/highcharts-drilldown.js"></script>
+
+    <!--<script src="js/libs/highcharts.js"></script>-->
+    <!--<script src="js/libs/highcharts-3d.js"></script>-->
+    <!--<script src="js/libs/highcharts-drilldown.js"></script>-->
+    <script src="js/libs/highstock.js"></script>
+    <script src="js/libs/highstock-drilldown.js"></script>
+
     <script src="js/libs/highcharts-ng.js"></script>
     <script src="js/libs/underscore.js"></script>
     <script src="js/libs/lodash.js"></script>
@@ -63,19 +66,16 @@
 
     <script src="js/main.js"></script>
 
+    <script src="js/libs/moment.js"></script>
+
     <link rel="stylesheet" href="third/dashboard/malhar-angular-dashboard.css"/>
     <script src="third/dashboard/malhar-angular-dashboard.js"></script>
+    <script src="third/highcharts-ng/highcharts-ng.js"></script>
   </head>
   <body ng-controller="AppController" ng-class="[header.menu_style, header.menu_collapse, header.header_topbar, header.effect]" class="animated">
     <div ng-class="header.boxed" class="default-page">
-      <!--.news-ticker.bg-orange-->
-      <!--    .container-->
-      <!--        ul#news-ticker-content.list-unstyled.mbn-->
-      <!--            li-->
-      <!--                a(href='http://swlabs.co/madmin/code/', target='_blank') This is Angular app version of this template. To see HTML version, please click here-->
-      <!--        a#news-ticker-close(href='javascript:;')-->
-      <!--            i.fa.fa-times--><a id="totop" href="/#/"><i class="fa fa-angle-up"></i></a>
-      <!--#header-topbar-option-demo.page-header-topbar(ng-include="'templates/states/header.html'", onload='load_header()')-->
+      <a id="totop" href="/#/"><i class="fa fa-angle-up"></i></a>
+      <!--<div id="header-topbar-option-demo" ng-include="'templates/states/header.html'" onload="load_header()" class="page-header-topbar"></div>-->
       <div id="wrapper" ng-class="header.layout_menu">
         <nav id="sidebar" role="navigation" data-step="3" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;" data-position="right" ng-include="'templates/states/sitebar.html'" ng-menu="" class="navbar-default navbar-static-side"></nav>
         <!--#chat-form.fixed(ng-include="'templates/states/_includes/chat-form.html'", ng-class="{show:header.chat}")-->

@@ -4556,6 +4556,9 @@ End Header Option Page
 .alert {
   color: #bf4346;
 }
+.highcharts-container {
+  overflow: visible !important;
+}
 .dashboard-item {
   font-size: 14px;
   font-style: italic;
@@ -4568,13 +4571,6 @@ End Header Option Page
 }
 .fa-angle-four-right:before {
   content: "\f105\f105\f105\f105";
-}
-.dashboard-widget-area {
-  margin: 0 0 30px !important;
-}
-.widget {
-  border: 0 solid #444 !important;
-  border-radius: 0 !important;
 }
 #rootwizard-tabdetail2 .navbar-inner .nav-pills li {
   width: 20%;

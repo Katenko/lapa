@@ -12,7 +12,11 @@
     "angular-bootstrap": "~0.12.1",
     "highcharts": "~4.1.4",
     "highcharts-ng": "~0.0.8",
-    "lodash": "~3.5.0"
+    "lodash": "~3.5.0",
+    "highstock": "~3.0.1",
+    "highstock-release": "~2.1.4",
+    "highcharts-release": "~4.1.4",
+    "moment": "~2.9.0"
   },
   "homepage": "https://github.com/Katenko/lapa",
   "authors": [
