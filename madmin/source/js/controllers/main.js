@@ -1,4 +1,4 @@
-App.controller('MainController', ['$scope', '$state', '$stateParams', 'DiagramService', 'charts', function ($scope, $state, $stateParams, DiagramService, charts){
+App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParams', 'DiagramService', 'charts', function ($scope, $rootScope, $state, $stateParams, DiagramService, charts){
     setTimeout(function(){
         $.fn.Data.checkbox();
 
@@ -148,10 +148,10 @@ App.controller('MainController', ['$scope', '$state', '$stateParams', 'DiagramSe
 
     }, 50);
 
-    loadDashboard($scope, $stateParams, charts);
+    loadDashboard($scope, $rootScope, $stateParams, charts);
 }]);
 
-function loadDashboard($scope, $stateParams, charts) {
+function loadDashboard($scope, $rootScope, $stateParams, charts) {
     //получить диаграммы дашборда
     var defaultWidgets = [];
     var widgetDefinitions = [];
@@ -197,5 +197,6 @@ function loadDashboard($scope, $stateParams, charts) {
 
     //инициализация
     $scope.dashboard = _.find($scope.backdata.dashboards.items, {"id": dashboard_id});
+    $rootScope.dashboardName = $scope.dashboard.name;
     $scope.charts = charts;
 }

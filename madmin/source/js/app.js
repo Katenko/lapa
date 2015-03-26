@@ -1018,12 +1018,9 @@ App.config(function ($stateProvider, $urlRouterProvider) {
                 }]
             }
         })
-
-        // start animation
         .state('animations', {
             url: "/animations",
             templateUrl: 'templates/states/animations.html'
         })
-
     ;
 });

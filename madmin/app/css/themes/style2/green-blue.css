@@ -4556,6 +4556,11 @@ End Header Option Page
 .alert {
   color: #bf4346;
 }
+.backicon {
+  margin-left: 15px;
+  top: 5px !important;
+  cursor: pointer;
+}
 .highcharts-container {
   overflow: visible !important;
 }
