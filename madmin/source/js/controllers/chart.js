@@ -30,13 +30,16 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
                     enabled: true,
                     formatter: function () {
                         var tooltip = (chart.type == 'pie') ? '<b>' + this.series.name + '</b><br/>' + this.key + ': ' + this.y :
-                                (chart.stock) ? '<b>' + moment(this.x).format("DD.MM.YYYY") + '</b><br/>' + this.series.name + ': ' + this.y :
-                                    '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y;
+                            (chart.stock) ? '<b>' + moment(this.x).format("DD.MM.YYYY") + '</b><br/>' + this.series.name + ': ' + this.y :
+                            '<b>' + this.x + '</b><br/>' + this.series.name + ': ' + this.y;
                         if (this.point.tooltip) {
                             tooltip = tooltip + '<br/>' + '<i>' + this.point.tooltip + '</i>';
                         }
                         return tooltip;
                     }
+                },
+                exporting: {
+                    filename: "chart_" + chart.id
                 }
             },
             title: {
@@ -49,10 +52,10 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
                 }
             },
             size: {
-                height: chart.height - 25
+                height: chart.height - 25,
+                width: getWinPx(chart.width, $scope.dashboard.id)
             },
-            loading: false,
-            exporting: false
+            loading: false
         };
 
         $scope.chartConfig.series = [];
@@ -81,6 +84,7 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
                 $scope.chartConfig.xAxis.type = "datetime";
                 $scope.chartConfig.xAxis.dateTimeLabelFormats = dateTimeLabelFormats;
 
+                var dateArray = [];
                 for (j in chart.x[i].data) {
                     var pointDate = moment.utc(chart.x[i].data[j].name, "DD.MM.YYYY");
                     point = {};
@@ -88,8 +92,44 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
                     point.y = chart.x[i].data[j].data;
                     point.tooltip = chart.x[i].data[j].tooltip;
                     $scope.chartConfig.series[i].data.push(point);
+                    dateArray.push(point.x);
                 }
-                $scope.chartConfig.options.rangeSelector = {enabled: true};
+                $scope.chartConfig.options.rangeSelector = {
+                    enabled: true,
+                    buttons: [{
+                        type: 'week',
+                        count: 1,
+                        text: '1 нед'
+                    }, {
+                        type: 'month',
+                        count: 1,
+                        text: '1 мес'
+                    }, {
+                        type: 'month',
+                        count: 3,
+                        text: '3 мес'
+                    }, {
+                        type: 'month',
+                        count: 6,
+                        text: '6 мес'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1 год'
+                    }, {
+                        type: 'all',
+                        text: 'Все'
+                    }],
+                    buttonSpacing: 10,
+                    inputEditDateFormat: "%d.%m.%Y",
+                    inputDateFormat: "%d.%m.%Y"
+                };
+                $scope.chartConfig.func = function (chartObj) {
+                    chartObj.xAxis[0].setExtremes(
+                        new Date(Math.min.apply(null, dateArray)),
+                        new Date(Math.max.apply(null, dateArray))
+                    );
+                };
                 $scope.chartConfig.options.navigator = {
                     enabled: true,
                     series: {data: []},
@@ -137,12 +177,16 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
                 $scope.chartConfig.size.height = size.height - 25;
             }
             if (size.width) {
-                var parentWidth = $('#dashboard_' + $scope.dashboard.id).offsetParent().width();
-                if (typeof size.width === "string") size.width = size.width.replace('%', '');
-                var width = parentWidth * size.width / 100 - 75;
+                var width = getWinPx(size.width, $scope.dashboard.id);
                 $scope.chartConfig.size.width = width || $scope.chartConfig.size.width;
             }
             $scope.$apply();
         });
     }
 }]);
+
+function getWinPx(perc, dashboard_id) {
+    var parentWidth = $('#dashboard_' + dashboard_id).offsetParent().width();
+    if (typeof perc === "string") perc = perc.replace('%', '');
+    return parentWidth * perc / 100 - 75;
+}

@@ -5,7 +5,15 @@ App.run([
         Highcharts.setOptions({
             lang: {
                 resetZoom: 'Сбросить',
-                resetZoomTitle: 'Вернуться к масштабу 1:1'
+                resetZoomTitle: 'Вернуться к масштабу 1:1',
+                rangeSelectorZoom: 'Масштаб',
+                rangeSelectorFrom: "c",
+                rangeSelectorTo: "по",
+                printChart: "Распечатать",
+                downloadJPEG: "Сохранить в формате JPEG",
+                downloadPDF: "Сохранить в формате PDF",
+                downloadPNG: "Сохранить в формате PNG",
+                downloadSVG: "Сохранить в формате SVG"
             }
         });
     }
