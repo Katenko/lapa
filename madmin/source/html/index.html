@@ -43,8 +43,6 @@
     <script src="js/libs/highstock.js"></script>
     <script src="js/libs/highstock-drilldown.js"></script>
 
-    <script src="js/libs/highcharts-ng.js"></script>
-    <script src="js/libs/underscore.js"></script>
     <script src="js/libs/lodash.js"></script>
     <!-- Loading global plugin-->
     <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
@@ -77,16 +75,16 @@
       <a id="totop" href="/#/"><i class="fa fa-angle-up"></i></a>
       <!--<div id="header-topbar-option-demo" ng-include="'templates/states/header.html'" onload="load_header()" class="page-header-topbar"></div>-->
       <div id="wrapper" ng-class="header.layout_menu">
-        <nav id="sidebar" role="navigation" data-step="3" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;" data-position="right" ng-include="'templates/states/sitebar.html'" ng-menu="" class="navbar-default navbar-static-side"></nav>
+        <nav id="sidebar" role="navigation" data-step="3" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;" data-position="right" ng-include="'templates/parts/sitebar.html'" ng-menu="" class="navbar-default navbar-static-side"></nav>
         <!--#chat-form.fixed(ng-include="'templates/states/_includes/chat-form.html'", ng-class="{show:header.chat}")-->
         <div id="page-wrapper" ng-class="header.animation" class="animated">
-          <div id="title-breadcrumb-option-demo" ng-include="'templates/states/breadcrumb.html'" class="page-title-breadcrumb"></div>
+          <div id="title-breadcrumb-option-demo" ng-include="'templates/parts/breadcrumb.html'" class="page-title-breadcrumb"></div>
           <div ui-view="" class="page-content"></div>
           <!--BEGIN CONTENT QUICK SIDEBAR-->
-          <div ng-include="'templates/states/_includes/quick-sidebar.html'" ng-class="{show:header.history}" class="quick-sidebar"></div>
+          <!--<div ng-include="'templates/states/_includes/quick-sidebar.html'" ng-class="{show:header.history}" class="quick-sidebar"></div>-->
           <!--END CONTENT QUICK SIDEBAR-->
         </div>
-        <div id="footer" ng-include="'templates/states/footer.html'" ng-show="header.footer" class="hide"></div>
+        <!--<div id="footer" ng-include="'templates/states/footer.html'" ng-show="header.footer" class="hide"></div>-->
       </div>
     </div>
     <div hide="hide" class="extra-page"></div>

@@ -20,15 +20,11 @@ App.run([
 ]);
 
 App.config(function ($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/");
-    //
-    // Now set up the states
     $stateProvider
         .state('index', {
             url: "/",
-            templateUrl: 'templates/states/page-about.html',
+            templateUrl: 'templates/pages/page-start.html',
             controller: 'StartController',
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -42,14 +38,18 @@ App.config(function ($stateProvider, $urlRouterProvider) {
                             'vendors/flot-chart/jquery.flot.resize.js',
                             'vendors/flot-chart/jquery.flot.fillbetween.js',
                             'vendors/flot-chart/jquery.flot.stack.js',
-                            'vendors/flot-chart/jquery.flot.spline.js']
+                            'vendors/flot-chart/jquery.flot.spline.js',
+                            'vendors/lightbox/css/lightbox.css',
+                            'vendors/mixitup/src/jquery.mixitup.js',
+                            'vendors/lightbox/js/lightbox.min.js'
+                        ]
                     });
                 }]
             }
         })
         .state('main', {
             url: "/main/:dashboardId?options",
-            templateUrl: 'templates/states/main.html',
+            templateUrl: 'templates/pages/main.html',
             controller: 'MainController',
             resolve: {
                 charts: function (DiagramService, $stateParams) {
@@ -154,7 +154,7 @@ App.config(function ($stateProvider, $urlRouterProvider) {
                             'vendors/bootstrap-markdown/js/bootstrap-markdown.js',
                             'vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
                             'vendors/ckeditor/ckeditor.js',
-                            'vendors/summernote/summernote.js',]
+                            'vendors/summernote/summernote.js']
                     });
                 }]
             }
@@ -166,7 +166,7 @@ App.config(function ($stateProvider, $urlRouterProvider) {
         .state('ui-modals', {
             url: "/ui-modals",
             templateUrl: 'templates/states/ui-modals.html',
-            controller: 'UIModalsController',
+            controller: 'UIModalsController'
         })
         .state('ui-sliders', {
             url: "/ui-sliders",

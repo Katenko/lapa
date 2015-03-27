@@ -1,3 +1,3 @@
-App.controller('StartController', ['$scope', '$rootScope', function ($scope, $rootScope){
+App.controller('StartController', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
 }]);

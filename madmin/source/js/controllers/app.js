@@ -64,11 +64,12 @@ App.controller('AppController', ['$scope', '$rootScope', '$state', 'BackdataFact
 
     BackdataFactory.loadBackdata().then(function (backdata) {
         $scope.backdata = backdata;
+        $scope.$broadcast("backdata_done");
     });
     $scope.$watch('backdata', function (newValue, oldValue) {
         if (newValue) {
-            //$scope.backdata = backdata; // в том числе там дерево категорий и диаграмм
-            var dashboard = newValue.dashboards.items[0];
+            //$scope.backdata = newValue; // в том числе там дерево категорий и диаграмм
+            //var dashboard = newValue.dashboards.items[0];
 
             var list = []; //результат дерева категрий для формы
             var level = "1";

@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="gallery-pages">
+            <ul class="list-filter list-unstyled list-inline">
+                <li data-filter="all" class="filter active">Все</li>
+                <li ng-repeat="category in backdata.categories.items | filter: level!=0" data-filter=".filter_{{category.id}}" class="filter">{{category.name}}</li>
+            </ul>
+            <div class="row mix-grid" mixitup>
+                <div ng-repeat="dashboard in backdata.dashboards.items | filter: {'visible': true}" class="col-md-3 mix" ng-class="'filter_'.concat(dashboard.category)">
+                    <div class="hover-effect">
+                        <div class="img"><img ng-src="images/gallery/{{dashboard.id}}.jpg" alt="" class="img-responsive"/></div>
+                        <div class="info">
+                            <h3>{{dashboard.name}}</h3><a ui-sref="main({'dashboardId': dashboard.id})" data-lightbox="image-1" data-title="Image 1" class="mix-zoom"><i class="glyphicon glyphicon-search"></i></a>
+                            <!--<a href="#" class="mix-link"><i class="glyphicon glyphicon-link"></i></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
