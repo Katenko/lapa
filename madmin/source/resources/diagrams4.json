@@ -1,0 +1,188 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "dashboard": 4,
+      "name": "Темпы роста добычи рыбы",
+      "title": "Темпы роста добычи рыбы",
+      "type": "column",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": true,
+      "childDashboard": 5,
+      "width": 50,
+      "height": 500,
+      "x": [
+        {
+          "name": "Темп роста 2014/2013, %",
+          "data": [
+            {
+              "name": "Квоты",
+              "data": 123.6,
+              "drilldown": false,
+              "tooltip": ""
+            },
+            {
+              "name": "Вылов(добыча) ВБР",
+              "data": 119,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Рыба и продукты переработанные и консервированные",
+              "data": 114.3,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Налоги в бюджет края",
+              "data": 120.6,
+              "drilldown": true,
+              "tooltip": "",
+              "subx": [
+                {
+                  "name": "Показатели",
+                  "data": [
+                    {
+                      "name": "Сбор за ВБР",
+                      "data": 117.3,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+                    {
+                      "name": "Прочие налоги",
+                      "data": 3.3,
+                      "drilldown": false,
+                      "tooltip": ""
+                    }
+                  ]
+                }
+              ],
+              "suby": {
+                "name": "Количество",
+                "enabled": true
+              }
+            },
+			{
+              "name": "Инвестиции",
+              "data": 110.9,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Объем отгруженной пром. продукции",
+              "data": 108.9,
+              "drilldown": false,
+              "tooltip": ""
+            }
+          ]
+        },
+		{
+          "name": "Темп роста 2015/2014, %",
+          "data": [
+            {
+              "name": "Квоты",
+              "data": 92.5,
+              "drilldown": false,
+              "tooltip": ""
+            },
+            {
+              "name": "Вылов(добыча) ВБР",
+              "data": 92.6,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Рыба и продукты переработанные и консервированные",
+              "data": 95.4,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Налоги в бюджет края",
+              "data": 92.7,
+              "drilldown": true,
+              "tooltip": "",
+              "subx": [
+                {
+                  "name": "Показатели",
+                  "data": [
+                    {
+                      "name": "Сбор за ВБР",
+                      "data": 83.1,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+                    {
+                      "name": "Прочие налоги",
+                      "data": 37.5,
+                      "drilldown": false,
+                      "tooltip": ""
+                    }
+                  ]
+                }
+              ],
+              "suby": {
+                "name": "Количество",
+                "enabled": true
+              }
+            },
+			{
+              "name": "Инвестиции",
+              "data": 103.9,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Объем отгруженной пром. продукции",
+              "data": 103.5,
+              "drilldown": false,
+              "tooltip": ""
+            }
+          ]
+        }
+      ],
+      "y": 
+	  {
+        "name": "Количество",
+        "enabled": true
+      }
+	  },
+	  {
+      "id": 2,
+      "dashboard": 4,
+      "name": "Выполнение плана по добыче рыбы за период январь - февраль 2015 года",
+      "title": "Выполнение плана по добыче рыбы за период январь - февраль 2015 года",
+      "type": "column",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": true,
+      "childDashboard": null,
+      "width": 50,
+      "height": 500,
+      "x": [
+        {
+          "name": "Показатели",
+          "data": [
+            {
+              "name": "Вылов(добыча) ВБР",
+              "data": 68.8,
+              "drilldown": false,
+              "tooltip": ""
+            },
+            {
+              "name": "Рыба и продукты переработанные и консервированные",
+              "data": 51.7,
+              "drilldown": false,
+              "tooltip": ""
+            }
+          ]
+        }
+      ],
+      "y": {
+        "name": "Количество",
+        "enabled": true
+      }
+    }
+  ]
+}

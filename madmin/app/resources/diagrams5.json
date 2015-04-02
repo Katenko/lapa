@@ -1,0 +1,153 @@
+{
+  "items": [
+    {
+      "id": 4,
+      "dashboard": 5,
+      "name": "Детализация по налогам",
+      "title": "Детализация по налогам",
+      "type": "pie",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": false,
+      "childDashboard": null,
+      "width": 50,
+      "height": 500,
+      "x": [
+        {
+          "name": "Темп роста 2014/2013, %",
+          "data": [
+            {
+              "name": "Квоты",
+              "data": 123.6,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+            {
+              "name": "Вылов(добыча) ВБР",
+              "data": 119,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+			{
+              "name": "Рыба и продукты переработанные и консервированные",
+              "data": 114.3,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+			{
+              "name": "Налоги в бюджет края",
+              "data": 120.6,
+              "drilldown": true,
+              "tooltip": "",
+              "subx": [
+                {
+                  "name": "Показатели",
+                  "data": [
+                    {
+                      "name": "Сбор за ВБР",
+                      "data": 117.3,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+                    {
+                      "name": "Прочие налоги",
+                      "data": 3.3,
+                      "drilldown": false,
+                      "tooltip": ""
+                    }
+                  ]
+                }
+              ],
+              "suby": {
+                "name": "Количество",
+                "enabled": true
+              }
+            },
+			{
+              "name": "Инвестиции",
+              "data": 110.9,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+			{
+              "name": "Объем отгруженной пром. продукции",
+              "data": 108.9,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            }
+          ]
+        },
+		{
+          "name": "Темп роста 2015/2014, %",
+          "data": [
+            {
+              "name": "Квоты",
+              "data": 92.5,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+            {
+              "name": "Вылов(добыча) ВБР",
+              "data": 92.6,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+			{
+              "name": "Рыба и продукты переработанные и консервированные",
+              "data": 95.4,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+			{
+              "name": "Налоги в бюджет края",
+              "data": 92.7,
+              "drilldown": true,
+              "tooltip": "",
+              "subx": [
+                {
+                  "name": "Показатели",
+                  "data": [
+                    {
+                      "name": "Сбор за ВБР",
+                      "data": 83.1,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+                    {
+                      "name": "Прочие налоги",
+                      "data": 37.5,
+                      "drilldown": false,
+                      "tooltip": ""
+                    }
+                  ]
+                }
+              ],
+              "suby": {
+                "name": "Количество",
+                "enabled": true
+              }
+            },
+			{
+              "name": "Инвестиции",
+              "data": 103.9,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            },
+			{
+              "name": "Объем отгруженной пром. продукции",
+              "data": 103.5,
+              "drilldown": false,
+              "tooltip": "Дополнительный тултип"
+            }
+          ]
+        }
+      ],
+      "y": 
+	  {
+        "name": "Количество",
+        "enabled": true
+      }
+	  }
+  ]
+}
+

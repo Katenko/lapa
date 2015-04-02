@@ -1,0 +1,310 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "dashboard": 3,
+      "name": "Информация о количестве и правомочности представительных органов муниципальных образований Хабаровского края на 01.01.2015",
+      "title": "Информация о количестве и правомочности представительных органов муниципальных образований Хабаровского края на 01.01.2015",
+      "type": "bar",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": true,
+      "childDashboard": null,
+      "width": 100,
+      "height": 500,
+      "x": [
+        {
+          "name": "Норма ПОМС",
+          "data": [
+            {
+              "name": "Амурский муниципальный район",
+              "data": 20,
+              "drilldown": false,
+              "tooltip": ""
+            },
+            {
+              "name": "Аяно-Майский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Бикинский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Ванинский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Верхнебуреинский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Вяземский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Комсомольский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Муниципальный район им. Лазо",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Нанайский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Николаевский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Охотский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Муниципальный район им. Полины Осипенко",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Советско-Гаванский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Солнечный муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Тугуро-Чумиканский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Ульчский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Хабаровский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Городской округ Хабаровск",
+              "data": 35,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Городской округ Комсомольск-на-Амуре",
+              "data": 25,
+              "drilldown": false,
+              "tooltip": ""
+            }
+          ]
+        },
+		{
+          "name": "Кол-во действующих депутатов",
+          "data": [
+            {
+              "name": "Амурский муниципальный район",
+              "data": 20,
+              "drilldown": false,
+              "tooltip": ""
+            },
+            {
+              "name": "Аяно-Майский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Бикинский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Ванинский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Верхнебуреинский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Вяземский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Комсомольский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Муниципальный район им. Лазо",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Нанайский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Николаевский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Охотский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Муниципальный район им. Полины Осипенко",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Советско-Гаванский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Солнечный муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Тугуро-Чумиканский муниципальный район",
+              "data": 14,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Ульчский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Хабаровский муниципальный район",
+              "data": 15,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Городской округ Город Хабаровск",
+              "data": 35,
+              "drilldown": false,
+              "tooltip": ""
+            },
+			{
+              "name": "Городской округ Город Комсомольск-на-Амуре",
+              "data": 25,
+              "drilldown": false,
+              "tooltip": ""
+            }
+          ]
+        }
+      ],
+      "y": 
+	  {
+        "name": "Количество",
+        "enabled": true
+      }
+	  },
+	  {
+      "id": 2,
+      "dashboard": 3,
+      "name": "Сведения о заявленных акциях за февраль 2015",
+      "title": "Сведения о заявленных акциях за февраль 2015",
+      "type": "column",
+      "zoom": "",
+      "stock": false,
+      "dataLabels": true,
+      "childDashboard": null,
+      "width": 100,
+      "height": 500,
+      "x": [
+        {
+          "name": "Наименование акции",
+          "data": [
+                    {
+                      "name": "Митинг ЛДПР",
+                      "data": 300,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+					{
+                      "name": "Пикет Союза Советских офицеров",
+                      "data": 50,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+					{
+                      "name": "Митинг движения Суть времени",
+                      "data": 20,
+                      "drilldown": false,
+                      "tooltip": ""
+                    },
+                    {
+                      "name": "Автопробег НОД",
+                      "data": 30,
+                      "drilldown": false,
+                      "tooltip": ""
+                    }
+                  ]
+        }
+      ],
+      "y": {
+        "name": "Количество участников",
+        "enabled": true
+      }
+    }
+  ]
+}
