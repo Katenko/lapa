@@ -62,6 +62,10 @@ module.exports = function (grunt) {
                         src: 'madmin/source/bower_components/ocLazyLoad.js'
                     },
                     {
+                        dest: 'madmin/app/js/libs/d3.v3.min.js',
+                        src: 'madmin/source/bower_components/d3.v3.min.js'
+                    },
+                    {
                         dest: 'madmin/app/js/libs/ui-bootstrap.js',
                         src: 'madmin/source/bower_components/angular-bootstrap/ui-bootstrap.js'
                     },
