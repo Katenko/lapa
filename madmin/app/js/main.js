@@ -1235,7 +1235,7 @@ function buildCategoriesTree(list, categories, current, level) {
 }
 
 
-App.controller('ChartController', ['$scope', '$state', '$stateParams', '$location', function ($scope, $state, $stateParams, $location) {
+App.controller('ChartController', ['$scope', '$state', '$stateParams', '$rootScope', function ($scope, $state, $stateParams, $rootScope) {
     var chart_id = $scope.widget.attrs.chart_id;
 
     var chart = _.find($scope.charts.items, {'id': chart_id});
@@ -1243,6 +1243,8 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
 
     if (chart.type == "table") {
         $scope.tableConfig = chart;
+    } else if (chart.type == 'multifoci') {
+        $scope.multifociConfig = chart;
     } else {
         //установим исходные данные для проваливаемых диаграмм
         if ($stateParams.options) {
@@ -1559,8 +1561,8 @@ App.controller('Extra500Controller', function ($scope, $routeParams){
     $("body>.default-page").hide();
     $("body>.extra-page").html($(".page-content").html()).show();
 });
-App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParams', 'DiagramService', 'charts', function ($scope, $rootScope, $state, $stateParams, DiagramService, charts){
-    setTimeout(function(){
+App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParams', 'DiagramService', 'charts', function ($scope, $rootScope, $state, $stateParams, DiagramService, charts) {
+    setTimeout(function () {
         $.fn.Data.checkbox();
 
         //BEGIN CALENDAR
@@ -1575,8 +1577,8 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
             "height": '250px',
             "wheelStep": 30
         });
-        $( ".sortable" ).sortable();
-        $( ".sortable" ).disableSelection();
+        $(".sortable").sortable();
+        $(".sortable").disableSelection();
         //END TO-DO-LIST
 
         //BEGIN CHAT FORM
@@ -1587,7 +1589,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
             "scrollTo": "100px"
         });
 
-        $('.chat-form input#input-chat').on("keypress", function(e){
+        $('.chat-form input#input-chat').on("keypress", function (e) {
             var $obj = $(this);
             var $me = $obj.parents('.portlet-body').find('ul.chats');
 
@@ -1615,7 +1617,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
 
                     $me.append(element);
                     var height = 0;
-                    $me.find('li').each(function(i, value){
+                    $me.find('li').each(function (i, value) {
                         height += parseInt($(this).height());
                     });
 
@@ -1628,7 +1630,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
                 }
             }
         });
-        $('.chat-form span#btn-chat').on("click", function(e){
+        $('.chat-form span#btn-chat').on("click", function (e) {
             e.preventDefault();
             var $obj = $(this).parents('.chat-form').find('input#input-chat');
             var $me = $obj.parents('.portlet-body').find('ul.chats');
@@ -1655,7 +1657,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
 
                 $me.append(element);
                 var height = 0;
-                $me.find('li').each(function(i, value){
+                $me.find('li').each(function (i, value) {
                     height += parseInt($(this).height());
                 });
                 height += '';
@@ -1672,22 +1674,23 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
         //BEGIN COUNTER FOR SUMMARY BOX
         counterNum($(".profit h4 span:first-child"), 189, 112, 1, 30);
         counterNum($(".income h4 span:first-child"), 636, 812, 1, 50);
-        counterNum($(".task h4 span:first-child"), 103, 155 , 1, 100);
+        counterNum($(".task h4 span:first-child"), 103, 155, 1, 100);
         counterNum($(".visit h4 span:first-child"), 310, 376, 1, 500);
         function counterNum(obj, start, end, step, duration) {
             $(obj).html(start);
-            setInterval(function(){
+            setInterval(function () {
                 var val = Number($(obj).html());
                 if (val < end) {
-                    $(obj).html(val+step);
+                    $(obj).html(val + step);
                 } else {
                     clearInterval();
                 }
-            },duration);
+            }, duration);
         }
+
         //END COUNTER FOR SUMMARY BOX
         // MESSAGE ON TOP
-        $('#message_trigger_ok').on('click', function(e) {
+        $('#message_trigger_ok').on('click', function (e) {
             e.preventDefault();
             $.scojs_message('This is an info message', $.scojs_message.TYPE_OK);
         });
@@ -1732,7 +1735,7 @@ function loadDashboard($scope, $rootScope, $stateParams, charts) {
                 templateUrl: 'templates/parts/chart.html',
                 title: charts.items[chart_index].title,
                 size: {
-                    width: charts.items[chart_index].width+'%',
+                    width: charts.items[chart_index].width + '%',
                     height: charts.items[chart_index].height
                 },
                 attrs: {
@@ -1804,6 +1807,122 @@ App.directive('mixitup', ['$window', '$timeout', '$compile', function ($window, 
         link: function (scope, element, attrs) {
             $timeout(function(){
                 element.mixItUp();
+            });
+        }
+    };
+}]);
+
+App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$interpolate', function ($window, $state, $stateParams, $timeout, $interpolate) {
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            config: '@'
+        },
+        templateUrl: "templates/directives/multifoci.html",
+        link: function ($scope, $element, $attrs) {
+            $timeout(function () {
+                function tick(e) {
+                    circle
+                        .each(gravity(0.2 * e.alpha))
+                        .each(collide(0.5))
+                        .attr("cx", function (d) {
+                            return d.x;
+                        })
+                        .attr("cy", function (d) {
+                            return d.y;
+                        });
+                }
+
+                // Move nodes toward cluster focus.
+                function gravity(alpha) {
+                    return function (d) {
+                        d.y += (d.cy - d.y) * alpha;
+                        d.x += (d.cx - d.x) * alpha;
+                    };
+                }
+
+                // Resolve collisions between nodes.
+                function collide(alpha) {
+                    var quadtree = d3.geom.quadtree(nodes);
+                    return function (d) {
+                        var r = d.radius + maxRadius + padding,
+                            nx1 = d.x - r,
+                            nx2 = d.x + r,
+                            ny1 = d.y - r,
+                            ny2 = d.y + r;
+                        quadtree.visit(function (quad, x1, y1, x2, y2) {
+                            if (quad.point && (quad.point !== d)) {
+                                var x = d.x - quad.point.x,
+                                    y = d.y - quad.point.y,
+                                    l = Math.sqrt(x * x + y * y),
+                                    r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+                                if (l < r) {
+                                    l = (l - r) / l * alpha;
+                                    d.x -= x *= l;
+                                    d.y -= y *= l;
+                                    quad.point.x += x;
+                                    quad.point.y += y;
+                                }
+                            }
+                            return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+                        });
+                    };
+                }
+
+                if ($scope.config) {
+                    var config = angular.fromJson($scope.config);
+                    var width = getWinPx(config.width, 1),
+                        height = 500,
+                        padding = 6, // separation between nodes
+                        maxRadius = 12;
+
+                    var n = 100, // total number of nodes
+                        m = 10; // number of distinct clusters
+
+                    var color = d3.scale.category10()
+                        .domain(d3.range(m));
+
+                    var x1 = d3.scale.ordinal()
+                        .domain(d3.range(m))
+                        .rangePoints([0, width], 1);
+
+                    var nodes = d3.range(n).map(function () {
+                        var i = Math.floor(Math.random() * m),
+                            v = (i + 1) / m * -Math.log(Math.random());
+                        return {
+                            radius: Math.sqrt(v) * maxRadius,
+                            color: color(i),
+                            cx: x1(i),
+                            cy: height / 2
+                        };
+                    });
+
+                    var force = d3.layout.force()
+                        .nodes(nodes)
+                        .size([width, height])
+                        .gravity(0)
+                        .charge(0)
+                        .on("tick", tick)
+                        .start();
+
+                    var svg = d3.select("#multifoci_"+config.id).append("svg")
+                        .attr("width", width)
+                        .attr("height", height);
+
+                    var circle = svg.selectAll("circle")
+                        .data(nodes)
+                        .enter().append("circle")
+                        .attr("r", function (d) {
+                            return d.radius;
+                        })
+                        .style("fill", function (d) {
+                            return d.color;
+                        })
+                        .call(force.drag);
+
+
+                }
             });
         }
     };

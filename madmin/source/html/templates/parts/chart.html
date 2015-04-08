@@ -1,6 +1,10 @@
 <div ng-controller="ChartController" resize>
-  <highchart-container>
-    <highchart config="chartConfig" id="chart_{{widget.attrs.chart_id}}" class="highchart_class" ng-hide="widget.attrs.chart_type=='table'"></highchart>
-    <hightable config="tableConfig" id="chart_{{widget.attrs.chart_id}}" ng-show="widget.attrs.chart_type=='table'"></hightable>
-  </highchart-container>
+    <highchart-container>
+        <highchart config="chartConfig" id="chart_{{widget.attrs.chart_id}}" class="highchart_class"
+                   ng-if="widget.attrs.chart_type=='column' || widget.attrs.chart_type=='bar' || widget.attrs.chart_type=='line'"></highchart>
+        <hightable config="tableConfig" id="chart_{{widget.attrs.chart_id}}"
+                   ng-if="widget.attrs.chart_type=='table'"></hightable>
+        <multifoci config="{{multifociConfig}}" id="multifoci_{{widget.attrs.chart_id}}"
+                   ng-if="widget.attrs.chart_type=='multifoci'"></multifoci>
+    </highchart-container>
 </div>

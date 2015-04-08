@@ -1,5 +1,5 @@
-App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParams', 'DiagramService', 'charts', function ($scope, $rootScope, $state, $stateParams, DiagramService, charts){
-    setTimeout(function(){
+App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParams', 'DiagramService', 'charts', function ($scope, $rootScope, $state, $stateParams, DiagramService, charts) {
+    setTimeout(function () {
         $.fn.Data.checkbox();
 
         //BEGIN CALENDAR
@@ -14,8 +14,8 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
             "height": '250px',
             "wheelStep": 30
         });
-        $( ".sortable" ).sortable();
-        $( ".sortable" ).disableSelection();
+        $(".sortable").sortable();
+        $(".sortable").disableSelection();
         //END TO-DO-LIST
 
         //BEGIN CHAT FORM
@@ -26,7 +26,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
             "scrollTo": "100px"
         });
 
-        $('.chat-form input#input-chat').on("keypress", function(e){
+        $('.chat-form input#input-chat').on("keypress", function (e) {
             var $obj = $(this);
             var $me = $obj.parents('.portlet-body').find('ul.chats');
 
@@ -54,7 +54,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
 
                     $me.append(element);
                     var height = 0;
-                    $me.find('li').each(function(i, value){
+                    $me.find('li').each(function (i, value) {
                         height += parseInt($(this).height());
                     });
 
@@ -67,7 +67,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
                 }
             }
         });
-        $('.chat-form span#btn-chat').on("click", function(e){
+        $('.chat-form span#btn-chat').on("click", function (e) {
             e.preventDefault();
             var $obj = $(this).parents('.chat-form').find('input#input-chat');
             var $me = $obj.parents('.portlet-body').find('ul.chats');
@@ -94,7 +94,7 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
 
                 $me.append(element);
                 var height = 0;
-                $me.find('li').each(function(i, value){
+                $me.find('li').each(function (i, value) {
                     height += parseInt($(this).height());
                 });
                 height += '';
@@ -111,22 +111,23 @@ App.controller('MainController', ['$scope', '$rootScope', '$state', '$stateParam
         //BEGIN COUNTER FOR SUMMARY BOX
         counterNum($(".profit h4 span:first-child"), 189, 112, 1, 30);
         counterNum($(".income h4 span:first-child"), 636, 812, 1, 50);
-        counterNum($(".task h4 span:first-child"), 103, 155 , 1, 100);
+        counterNum($(".task h4 span:first-child"), 103, 155, 1, 100);
         counterNum($(".visit h4 span:first-child"), 310, 376, 1, 500);
         function counterNum(obj, start, end, step, duration) {
             $(obj).html(start);
-            setInterval(function(){
+            setInterval(function () {
                 var val = Number($(obj).html());
                 if (val < end) {
-                    $(obj).html(val+step);
+                    $(obj).html(val + step);
                 } else {
                     clearInterval();
                 }
-            },duration);
+            }, duration);
         }
+
         //END COUNTER FOR SUMMARY BOX
         // MESSAGE ON TOP
-        $('#message_trigger_ok').on('click', function(e) {
+        $('#message_trigger_ok').on('click', function (e) {
             e.preventDefault();
             $.scojs_message('This is an info message', $.scojs_message.TYPE_OK);
         });
@@ -171,7 +172,7 @@ function loadDashboard($scope, $rootScope, $stateParams, charts) {
                 templateUrl: 'templates/parts/chart.html',
                 title: charts.items[chart_index].title,
                 size: {
-                    width: charts.items[chart_index].width+'%',
+                    width: charts.items[chart_index].width + '%',
                     height: charts.items[chart_index].height
                 },
                 attrs: {

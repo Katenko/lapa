@@ -1,4 +1,4 @@
-App.controller('ChartController', ['$scope', '$state', '$stateParams', '$location', function ($scope, $state, $stateParams, $location) {
+App.controller('ChartController', ['$scope', '$state', '$stateParams', '$rootScope', function ($scope, $state, $stateParams, $rootScope) {
     var chart_id = $scope.widget.attrs.chart_id;
 
     var chart = _.find($scope.charts.items, {'id': chart_id});
@@ -6,6 +6,8 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$locatio
 
     if (chart.type == "table") {
         $scope.tableConfig = chart;
+    } else if (chart.type == 'multifoci') {
+        $scope.multifociConfig = chart;
     } else {
         //установим исходные данные для проваливаемых диаграмм
         if ($stateParams.options) {
