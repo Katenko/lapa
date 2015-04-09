@@ -1,7 +1,7 @@
 <div ng-controller="ChartController" resize>
     <highchart-container>
         <highchart config="chartConfig" id="chart_{{widget.attrs.chart_id}}" class="highchart_class"
-                   ng-if="widget.attrs.chart_type=='column' || widget.attrs.chart_type=='bar' || widget.attrs.chart_type=='line'"></highchart>
+                   ng-if="widget.attrs.chart_type=='column' || widget.attrs.chart_type=='bar' || widget.attrs.chart_type=='line' || widget.attrs.chart_type=='pie'"></highchart>
         <hightable config="tableConfig" id="chart_{{widget.attrs.chart_id}}"
                    ng-if="widget.attrs.chart_type=='table'"></hightable>
         <multifoci config="{{multifociConfig}}" id="multifoci_{{widget.attrs.chart_id}}"

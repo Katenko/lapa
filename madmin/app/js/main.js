@@ -1870,15 +1870,22 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                     };
                 }
 
+                $scope.getx = function(index) {
+                    return x1(index)-x1(0)/2-10;
+                };
+
+                $scope.gety = function(index) {
+                    return (index % 2 === 0) ? 25 : 50;
+                };
+
                 if ($scope.config) {
                     var config = angular.fromJson($scope.config);
-                    var width = getWinPx(config.width, 1),
-                        height = 500,
-                        padding = 6, // separation between nodes
-                        maxRadius = 12;
 
-                    var n = 100, // total number of nodes
-                        m = 10; // number of distinct clusters
+                    var m = 10; //number of distinct clusters
+                    var width = getWinPx(config.width, 1),
+                        height = config.height - 100,
+                        padding = 6,
+                        maxRadius = getWinPx(config.width, 1) / (5 * m); //5 - виртуальный коэф-т
 
                     var color = d3.scale.category10()
                         .domain(d3.range(m));
@@ -1887,16 +1894,26 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                         .domain(d3.range(m))
                         .rangePoints([0, width], 1);
 
-                    var nodes = d3.range(n).map(function () {
-                        var i = Math.floor(Math.random() * m),
-                            v = (i + 1) / m * -Math.log(Math.random());
-                        return {
-                            radius: Math.sqrt(v) * maxRadius,
-                            color: color(i),
-                            cx: x1(i),
-                            cy: height / 2
-                        };
-                    });
+                    $scope.colors = {};
+                    $scope.names = {};
+                    for (var i = 0; i < 10; i++) {
+                        $scope.colors[i] = color(i);
+                        $scope.names[i] = 'Наименование ' + i;
+                    }
+                    $scope.legendwidth = getWinPx(config.width, 1);
+
+                    var nodes = [
+                        {radius: Math.random() * maxRadius, color: color(0), cx: x1(0), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(1), cx: x1(1), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(2), cx: x1(2), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(3), cx: x1(3), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(4), cx: x1(4), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(5), cx: x1(5), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(6), cx: x1(6), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(7), cx: x1(7), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(8), cx: x1(8), cy: height / 2},
+                        {radius: Math.random() * maxRadius, color: color(9), cx: x1(9), cy: height / 2}
+                    ];
 
                     var force = d3.layout.force()
                         .nodes(nodes)
@@ -1906,7 +1923,7 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                         .on("tick", tick)
                         .start();
 
-                    var svg = d3.select("#multifoci_"+config.id).append("svg")
+                    var svg = d3.select("#multifoci_" + config.id).append("svg")
                         .attr("width", width)
                         .attr("height", height);
 
@@ -1920,8 +1937,6 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                             return d.color;
                         })
                         .call(force.drag);
-
-
                 }
             });
         }
