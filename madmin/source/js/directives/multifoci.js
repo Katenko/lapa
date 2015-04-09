@@ -18,6 +18,15 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                         .attr("cy", function (d) {
                             return d.y;
                         });
+                    text
+                        .each(gravity(0.2 * e.alpha))
+                        .each(collide(0.5))
+                        .attr("x", function (d) {
+                            return d.x-3;
+                        })
+                        .attr("y", function (d) {
+                            return d.y+4;
+                        });
                 }
 
                 // Move nodes toward cluster focus.
@@ -56,22 +65,22 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                     };
                 }
 
-                $scope.getx = function(index) {
-                    return x1(index)-x1(0)/2-10;
+                $scope.getx = function (index) {
+                    return x1(index) - x1(0) / 2;
                 };
 
-                $scope.gety = function(index) {
+                $scope.gety = function (index) {
                     return (index % 2 === 0) ? 25 : 50;
                 };
 
                 if ($scope.config) {
                     var config = angular.fromJson($scope.config);
 
-                    var m = 10; //number of distinct clusters
+                    var m = config.x.length; //number of distinct clusters
                     var width = getWinPx(config.width, 1),
-                        height = config.height - 100,
-                        padding = 6,
-                        maxRadius = getWinPx(config.width, 1) / (5 * m); //5 - виртуальный коэф-т
+                        height = config.height - 75,
+                        padding = 10,
+                        maxRadius = getWinPx(config.width, 1) / (4 * m); //todo виртуальный коэф-т
 
                     var color = d3.scale.category10()
                         .domain(d3.range(m));
@@ -82,24 +91,24 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
 
                     $scope.colors = {};
                     $scope.names = {};
-                    for (var i = 0; i < 10; i++) {
+                    for (var i = 0; i < config.x.length; i++) {
                         $scope.colors[i] = color(i);
-                        $scope.names[i] = 'Наименование ' + i;
+                        $scope.names[i] = config.x[i].name;
                     }
                     $scope.legendwidth = getWinPx(config.width, 1);
 
-                    var nodes = [
-                        {radius: Math.random() * maxRadius, color: color(0), cx: x1(0), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(1), cx: x1(1), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(2), cx: x1(2), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(3), cx: x1(3), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(4), cx: x1(4), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(5), cx: x1(5), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(6), cx: x1(6), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(7), cx: x1(7), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(8), cx: x1(8), cy: height / 2},
-                        {radius: Math.random() * maxRadius, color: color(9), cx: x1(9), cy: height / 2}
-                    ];
+                    var nodes = [];
+                    angular.forEach(config.x, function (value_x, key_x) {
+                        angular.forEach(value_x.data, function (value_data, key_data) {
+                            nodes.push({
+                                radius: value_data.data * maxRadius / 100,
+                                color: color(key_x),
+                                cx: x1(key_x),
+                                cy: height / 2,
+                                name: value_data.name
+                            });
+                        });
+                    });
 
                     var force = d3.layout.force()
                         .nodes(nodes)
@@ -113,15 +122,39 @@ App.directive('multifoci', ['$window', '$state', '$stateParams', '$timeout', '$i
                         .attr("width", width)
                         .attr("height", height);
 
+                    var node = svg.selectAll(".node")
+                        .data(nodes)
+                        .enter().append("g")
+                        .attr("class", "node")
+                        .call(force.drag);
+
                     var circle = svg.selectAll("circle")
                         .data(nodes)
-                        .enter().append("circle")
+                        .enter()
+                        .append("circle")
                         .attr("r", function (d) {
                             return d.radius;
                         })
                         .style("fill", function (d) {
                             return d.color;
                         })
+                        .call(force.drag);
+
+                    var text = svg.selectAll("text")
+                        .data(nodes)
+                        .enter()
+                        .append("text")
+                        .attr("x", function (d) {
+                            return d.cx;
+                        })
+                        .attr("y", function (d) {
+                            return d.cy;
+                        })
+                        .text(function (d) {
+                            return d.name;
+                        })
+                        .style("font-size", "10px")
+                        .style("font-weight", "bold")
                         .call(force.drag);
                 }
             });
