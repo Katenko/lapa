@@ -8,6 +8,8 @@ App.controller('ChartController', ['$scope', '$state', '$stateParams', '$rootSco
         $scope.tableConfig = chart;
     } else if (chart.type == 'multifoci') {
         $scope.multifociConfig = chart;
+    } else if (chart.type == 'map') {
+        $scope.chartConfig = getMapOption(chart);
     } else {
         //установим исходные данные для проваливаемых диаграмм
         if ($stateParams.options) {
@@ -191,4 +193,69 @@ function getWinPx(perc, dashboard_id) {
     var parentWidth = $('#dashboard_' + dashboard_id).offsetParent().width();
     if (typeof perc === "string") perc = perc.replace('%', '');
     return parentWidth * perc / 100 - 75;
+}
+
+function getMapOption(chart) {
+    return {
+        options: {
+            chart: {
+                height: chart.height-10,
+                width: getWinPx(chart.width, chart.dashboard)
+            },
+
+            legend: {
+                layout: 'horizontal',
+                borderWidth: 0,
+                backgroundColor: 'rgba(255,255,255,0.45)',
+                floating: true,
+                verticalAlign: 'top',
+                y: 15,
+                align: 'left',
+                x: 30
+
+            },
+            exporting: {
+                filename: "map_" + chart.id
+            },
+            mapNavigation: {
+                enabled: true
+            },
+
+            colorAxis: {
+                min: 1,
+                type: 'logarithmic',
+                minColor: '#EEEEFF',
+                maxColor: '#000022',
+                stops: [
+                    [0, '#EFEFFF'],
+                    [0.67, '#4444FF'],
+                    [1, '#000022']
+                ]
+            }
+        },
+        chartType: 'map',
+        title: {
+            text: ''
+        },
+        series: [{
+            animation: {
+                duration: 1000
+            },
+            data: chart.x.data,
+            mapData: Highcharts.maps[chart.mapName],
+            joinBy: ['ID', 'code'],
+            dataLabels: {
+                enabled: chart.dataLabels,
+                color: 'white',
+                formatter: function () {
+                    return this.point.options.name ? this.point.options.name : this.point.properties.shortName;
+                }
+            },
+            name: chart.x.name,
+            tooltip: {
+                valueSuffix: '/км²'
+            }
+        }]
+    };
+
 }

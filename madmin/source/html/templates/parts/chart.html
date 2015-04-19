@@ -6,5 +6,8 @@
                    ng-if="widget.attrs.chart_type=='table'"></hightable>
         <multifoci config="{{multifociConfig}}" id="multifoci_{{widget.attrs.chart_id}}"
                    ng-if="widget.attrs.chart_type=='multifoci'"></multifoci>
+        <!--tv todo стили нужно перенести в класс и назначачить его картам, например highchart_class-->
+        <highchart config="chartConfig" id="chart_{{widget.attrs.chart_id}}"
+                   ng-if="widget.attrs.chart_type=='map'"></highchart>
     </highchart-container>
 </div>
