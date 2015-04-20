@@ -305,6 +305,102 @@
         "name": "Количество участников",
         "enabled": true
       }
+    },
+    {
+      "id": 3,
+      "dashboard": 3,
+      "name": "Плотность населения Хабаровского края",
+      "title": "Плотность населения Хабаровского края (чел/км²)",
+      "type": "map",
+      "mapName": "countries/ru/hk-all",
+      "dataLabels": true,
+      "childDashboard": null,
+      "width": 100,
+      "height": 500,
+      "x":
+      {
+        "name": "Плотность населения",
+        "data": [
+          {
+            "value": 4.34,
+            "code": "AU"
+          },
+          {
+            "name": "Ааяно-Майский р.",
+            "value": 0.01,
+            "code": "AM"
+          },
+          {
+            "value": 10.93,
+            "code": "BK"
+          },
+          {
+            "value": 1.55,
+            "code": "VN"
+          },
+          {
+            "value": 0.48,
+            "code": "VB"
+          },
+          {
+            "value": 5,
+            "code": "VZ"
+          },
+          {
+            "value": 1.28,
+            "code": "KM"
+          },
+          {
+            "value": 0.59,
+            "code": "NN"
+          },
+          {
+            "value": 1.71,
+            "code": "NK"
+          },
+          {
+            "name": "Охотский р.",
+            "value": 0.05,
+            "code": "OH"
+          },
+          {
+            "value": 1.32,
+            "code": "LZ"
+          },
+          {
+            "value": 0.13,
+            "code": "PO"
+          },
+          {
+            "value": 2.61,
+            "code": "SG"
+          },
+          {
+            "value": 0.16,
+            "code": "SL"
+          },
+          {
+            "value": 0.03,
+            "code": "TC"
+          },
+          {
+            "value": 0.42,
+            "code": "UL"
+          },
+          {
+            "value": 3.98,
+            "code": "HA"
+          },
+          {
+            "value": 1573.43,
+            "code": "HO"
+          },
+          {
+            "value": 778.86,
+            "code": "KO"
+          }
+        ]
+      }
     }
   ]
 }

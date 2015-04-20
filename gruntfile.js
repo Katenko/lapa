@@ -78,6 +78,10 @@ module.exports = function (grunt) {
                         src: 'madmin/source/bower_components/highstock-release/modules/drilldown.js'
                     },
                     {
+                        dest: 'madmin/app/js/libs/highmaps.js',
+                        src: 'madmin/source/bower_components/highmaps-release/highmaps.js'
+                    },
+                    {
                         dest: 'madmin/app/js/libs/lodash.js',
                         src: 'madmin/source/bower_components/lodash/lodash.js'
                     },
