@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         project: {
             javascript: {
-                ours: ['madmin/source/js/app.js', 'madmin/source/js/**/*.js', 'madmin/source/js/functions.js']
+                ours: ['madmin/source/js/**/*.js']
             },
             secret: grunt.file.readJSON('./secret.json'),
             pkg: grunt.file.readJSON('./package.json')
