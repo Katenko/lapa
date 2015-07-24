@@ -62,7 +62,7 @@ App.controller('MainController', function ($scope, $routeParams){
                     //alert(height);
                     $('.chat-scroller').slimScroll({
                         scrollTo: height,
-                        "wheelStep": 30,
+                        "wheelStep": 30
                     });
                 }
             }
@@ -145,6 +145,5 @@ App.controller('MainController', function ($scope, $routeParams){
                 life: 4000
             });
         }, 5000);
-
     }, 50);
 });

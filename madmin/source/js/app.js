@@ -52,9 +52,20 @@ App.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/pages/main.html',
             controller: 'MainController',
             resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        files: ['vendors/DataTables/media/css/jquery.dataTables.css',
+                            'vendors/DataTables/media/css/dataTables.bootstrap.css',
+                            'vendors/DataTables/media/js/jquery.dataTables.js',
+                            'vendors/DataTables/media/js/dataTables.bootstrap.js',
+                            'vendors/DataTables/jquery.jeditable.js']
+                    });
+                }],
                 charts: function (DiagramService, $stateParams) {
                     //получим данные диаграмм для дашборда
-                    return DiagramService.getJson('diagrams' + $stateParams.dashboardId + '.json');
+                    var mode = 0;
+                    if ($stateParams.dashboardId == 6) mode = 1;
+                    return DiagramService.getJson('diagrams' + $stateParams.dashboardId + '.json', mode);
                 }
             },
             params: {

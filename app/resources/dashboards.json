@@ -54,6 +54,17 @@
       "rating": 1,
       "image": "sidorov.jpg",
       "info": "Дополнительная информация 3"
+    },
+    {
+      "id": 6,
+      "name": "Детализация звонков",
+      "category": 5,
+      "visible": true,
+      "department": "Министерство информационных технологий и связи",
+      "head": "Калашников Сергей",
+      "rating": 5,
+      "image": "kalashnikov.jpg",
+      "info": "Самый главный IT мэн"
     }
   ]
 }

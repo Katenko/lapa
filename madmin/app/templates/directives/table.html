@@ -1,24 +1,42 @@
-<div class="row">
+<div class="row mbm">
     <div class="col-lg-12">
         <!--<div class="panel panel-blue">-->
-            <div class="panel-body">
-                <div id="flip-scroll">
-                    <table class="table table-bordered table-striped table-condensed cf">
-                        <thead class="cf">
-                        <tr>
-                            <th>{{config.series}}</th>
-                            <th ng-repeat="name in config.names">{{name}}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="x in config.x">
-                            <td>{{x.name}}</td>
-                            <td ng-repeat="data in x.data">{{data}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="panel-body">
+            <div id="flip-scroll">
+                <table id="table_id" class="table table-hover table-striped table-bordered table-advanced tablesorter display">
+                    <thead class="cf">
+                    <tr role="row" class="heading">
+                        <th width="10%">{{config.series}}</th>
+                        <th ng-repeat="name in config.names">{{name}}</th>
+                        <!--<th width="10%" class="sorting">Действия</th>-->
+                    </tr>
+                    <!--<tr role="row" class="filter">-->
+                        <!--<td>-->
+                            <!--<input type="text" name="{{config.series}" class="form-control form-filter input-sm"/>-->
+                        <!--</td>-->
+                        <!--<td ng-repeat="name in config.names"><input type="text" name="{{name}}" class="form-control form-filter input-sm"/></td>-->
+                        <!--<td>-->
+                            <!--<div class="mbs">-->
+                                <!--<button class="btn btn-xs btn-success filter-submit"><i class="fa fa-search"></i>&nbsp;-->
+                                    <!--Поиск-->
+                                <!--</button>-->
+                            <!--</div>-->
+                            <!--<button class="btn btn-xs btn-info filter-cancel"><i class="fa fa-times"></i>&nbsp;-->
+                                <!--Сброс-->
+                            <!--</button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in config.x">
+                        <td>{{x.name}}</td>
+                        <td ng-repeat="data in x.data">{{data}}</td>
+                        <!--<td></td>-->
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
         <!--</div>-->
     </div>
 </div>

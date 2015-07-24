@@ -53,9 +53,20 @@ App.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/pages/main.html',
             controller: 'MainController',
             resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        files: ['vendors/DataTables/media/css/jquery.dataTables.css',
+                            'vendors/DataTables/media/css/dataTables.bootstrap.css',
+                            'vendors/DataTables/media/js/jquery.dataTables.js',
+                            'vendors/DataTables/media/js/dataTables.bootstrap.js',
+                            'vendors/DataTables/jquery.jeditable.js']
+                    });
+                }],
                 charts: function (DiagramService, $stateParams) {
                     //получим данные диаграмм для дашборда
-                    return DiagramService.getJson('diagrams' + $stateParams.dashboardId + '.json');
+                    var mode = 0;
+                    if ($stateParams.dashboardId == 6) mode = 1;
+                    return DiagramService.getJson('diagrams' + $stateParams.dashboardId + '.json', mode);
                 }
             },
             params: {
@@ -1854,16 +1865,44 @@ App.directive('highchartContainer', function(){
 	};
 });
 
-App.directive('hightable', ['$window', '$state', '$stateParams', function ($window, $state, $stateParams) {
+App.directive('hightable', ['$window', '$state', '$stateParams', '$timeout', function ($window, $state, $stateParams, $timeout) {
     return {
         restrict: 'E',
         scope: {
-            config:"="
+            config: "="
         },
         replace: true,
         templateUrl: "templates/directives/table.html",
         link: function (scope) {
-
+            $timeout(function () {
+                var spinner = $(".spinner").spinner();
+                var table = $('#table_id').dataTable({
+                    "language": {
+                        "processing": "Подождите...",
+                        "search": "Поиск:",
+                        "lengthMenu": "Показать _MENU_ записей",
+                        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                        "infoPostFix": "",
+                        "loadingRecords": "Загрузка записей...",
+                        "zeroRecords": "Записи отсутствуют.",
+                        "emptyTable": "В таблице отсутствуют данные",
+                        "paginate": {
+                            "first": "Первая",
+                            "previous": "Предыдущая",
+                            "next": "Следующая",
+                            "last": "Последняя"
+                        },
+                        "aria": {
+                            "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                            "sortDescending": ": активировать для сортировки столбца по убыванию"
+                        }
+                    },
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Все"]]
+                });
+            });
+            $(".DTTT_container").css("float", "right");
         }
     };
 }]);
@@ -4786,13 +4825,22 @@ Highcharts.maps["countries/ru/hk-all"] ={
 };
 
 App.service('DiagramService', ['$http', '$q',
-	function($http, $q) {
-        this.getJson = function(file) {
+    function ($http, $q) {
+        this.getJson = function (file, mode) {
             var deferred = $q.defer();
-            $http.get('resources/'+file).then(function(data) {
-                deferred.resolve(data.data);
-            });
+            var path;
+            if (mode > 0) {
+                path = "http://192.168.23.203:8085/cucm-1.0/data/getData/cdr";
+                $http.jsonp(path + "?callback=JSON_CALLBACK").then(function (data) {
+                    deferred.resolve(data.data);
+                });
+            } else {
+                path = 'resources/' + file;
+                $http.get(path).then(function (data) {
+                    deferred.resolve(data.data);
+                });
+            }
             return deferred.promise;
         };
-	}
+    }
 ]);
