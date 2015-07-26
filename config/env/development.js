@@ -2,7 +2,7 @@
 
 module.exports = {
 	//db: 'mongodb://212.19.21.94/lapa-dev',
-	db: 'mongodb://192.168.23.202/lapa-dev',
+	db: 'mongodb://localhost/lapa-dev',
 	app: {
 		title: 'lapa - Development Environment'
 	},
